@@ -19,8 +19,8 @@ sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-d
 curl -L https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
-rvm install 2.2.2
-rvm use 2.2.2 --default
+rvm install 2.1.3
+rvm use 2.1.3 --default
 ruby -v
 
 echo "gem: --no-ri --no-rdoc" > ~/.gemrc
