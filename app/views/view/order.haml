@@ -1,0 +1,26 @@
+=render 'header'
+%section.order
+  %form{:novalidate => ""}
+    %label 商品名:
+    %input.form-control{"type"=>"text", "ng-model"=>"order.product_name", "typeahead"=>"product as product.name for product in getProducts($viewValue)", "typeahead-on-select"=>"productSelected($item, $model, $label)", "ng-change" => "productChanged($event)", "placeholder" => "必需填写"}
+
+   
+    %label 数量:
+    %input.form-control{"ng-model" => "order.quantity", :required => "", :type => "number", :min =>'1', "ng-change"=>"quantity_changed(order.quantity)", "ng-click"=>"quantity_clicked()", "ng-blur"=>"quantity_blur()", "placeholder" => "必需填写"}/
+    %label 客户:
+    .row
+      .col-xs-9
+        %select.form-control{"ng-model" => "order.client_id", "ng-options" => "client.id as client.name for client in clients", "ng-change"=>"clientChanged(order.client_id)", :required => ""}
+      .col-xs-3
+        .btn.btn-primary.btn-new{"ng-click" => "newClient()"} 新客户
+    .row
+      .col-md-6
+        %label 单价: ({{price_unit}})
+        %input.form-control{"ng-model" => "order.sale_price", :required => "", :type => "number", :step =>"0.01", :min=>'0', "ng-change"=>"unit_price_changed(order.sale_price)", "placeholder" => "必需填写"}
+      .col-md-6
+        %label 总价: ({{price_unit}})
+        %input.form-control{:type => "number", "ng-model" => "total_price", :step =>"0.01", :min=>'0', "ng-change"=>"total_price_changed(total_price)"}
+    %br/
+    %br/
+    .center
+      .btn.btn-success{"ng-click" => "submit($event)", :type => "submit"} 确定

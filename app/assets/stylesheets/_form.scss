@@ -1,0 +1,11 @@
+form{
+  .ng-invalid{
+    border-color: #aa0000;
+  }
+  label{
+    font-weight: normal;
+  }
+  input{
+    margin-right: 5px;
+  }
+}

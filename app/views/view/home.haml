@@ -1,0 +1,60 @@
+=render 'header'
+%section
+  %table
+    %tr
+      %td
+        .icon
+          %a{"ng-href" => "#/order"}
+            %i.fa.fa-pencil-square-o.dd
+          %p 订单录入
+      %td
+        .icon
+          %a{:href => "#/buy"}
+            %i.fa.fa-shopping-cart.dg
+          %p 待购商品
+      %td
+        .icon
+          %a{:href => "#/send"}
+            %i.fa.fa-truck.df
+          %p 待发货
+      %td
+        .icon
+          %a{:href => "#/pay"}
+            %i.fa.fa-usd.ds
+          %p 待收款
+    %tr
+      %td
+        .icon
+          %a{:href => "#/ordermanager"}
+            %i.fa.fa-table.ls
+          %p 订单管理
+      %td
+        .icon
+          %a{:href => "#/clientmanager"}
+            %i.fa.fa-users.cw
+          %p 顾客管理
+      %td
+        .icon
+          %a{:href => "/#/packagemanager"}
+            %i.fa.fa-cubes.sp
+          %p 包裹管理
+      %td
+        .icon
+          %a{:href => "/#/report"}
+            %i.fa.fa-bar-chart.gk
+          %p 财务报表
+    %tr
+      %td
+        .icon
+          %a{:href => "/#/contact"}
+            %i.fa.fa-envelope-o.lx
+          %p 联系我们
+      %td
+        .icon
+          %a{:href => "#", "ng-click" => "signout()"}
+            %i.fa.fa-sign-out.tc
+          %p 退出系统
+  -if  current_user.email == 'guest@test.com'
+    .alert.alert-danger.center
+      %p 当前用户为测试用户。您输入的任何数据将无法确保得到保存。
+      %p 如果您想继续使用代购本, 请退出该用户并注册您自己的用户。 

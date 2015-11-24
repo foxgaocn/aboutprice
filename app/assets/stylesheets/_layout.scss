@@ -1,0 +1,97 @@
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+  position: relative;
+  font-family: "Helvetica Neue";
+  font-weight: lighter;
+}
+
+.center{
+  text-align: center;
+}
+
+.link{
+  color: #00f;
+  text-decoration: underline;
+}
+
+.modal-header{
+  padding: 0 15px
+}
+
+
+.myod{
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  
+  @media 
+    only screen and (min-device-width: 680px)
+    {
+      .modal-header{
+        padding: 15px;
+      }  
+    }
+
+  header {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    background: #eeeeee;
+    background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc));
+    background: -webkit-linear-gradient(top, #eeeeee 0%,#cccccc 100%);
+    background: -o-linear-gradient(top, #eeeeee 0%,#cccccc 100%);
+    background: -ms-linear-gradient(top, #eeeeee 0%,#cccccc 100%);
+    background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 );
+    padding: 0;
+    text-align: center;
+    border-radius: 3px;
+
+    i{
+      font-size: 28px;
+      padding-top: 5px;
+      display: block;
+      margin-top:5px;
+      padding: 3px 10px;
+    }
+    .home{
+      float: left;
+      margin-left: 0px;
+    }
+    .cog{
+      float: right;
+      margin-right: 0px; 
+    }
+    .title{
+      color: #428bca;
+      padding-bottom: 5px;
+      font-size: 22px;
+    }
+  }
+
+  section {
+    position: absolute;
+    width: 100%;
+    top: 44px;
+    left: 0;
+    bottom: 0;
+    overflow-y: scroll;
+
+    form{
+      padding-left: 15px;
+      padding-right: 15px;
+      .btn-success{
+        width: 60%;
+      }
+    }
+  }
+}

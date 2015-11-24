@@ -1,0 +1,24 @@
+.modal-header
+  %h3 {{title}} 
+.modal-body
+  %form.form-horizontal{:novalidate => "", id:'edit_package_form'}
+    .form-group
+      %label.col-md-2.col-xs-4.control-label 编号:
+      .col-xs-8.col-md-10
+        %input.form-control{"ng-model" => "package.label", :type => "text", :disabled => ''}
+    .form-group
+      %label.col-md-2.col-xs-4.control-label 运单号:
+      .col-xs-8.col-md-10
+        %input.form-control{"ng-model" => "package.tracking", :type => "text", "placeholder" => "可选"}/
+    .form-group
+      %label.col-md-2.col-xs-4.control-label  运费:
+      .col-xs-8.col-md-10
+        %input{"ng-model" => "package.shipping_fee", :required => "", :type => 'number', :step => '0.01', "placeholder" => "必需填写"}
+    .form-group
+      %label.col-md-2.col-xs-4.control-label 状态:
+      .col-xs-8.col-md-10
+        %select.form-control{"ng-model" => "package.status", "ng-options" => "status.code as status.title for status in packageStatus", :required => ""}
+
+.modal-footer
+  %button.btn.btn-primary{"ng-click" => "ok($event)"} OK
+  %button.btn.btn-warning{"ng-click" => "cancel()"} Cancel
