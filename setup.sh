@@ -58,6 +58,11 @@ rvmsudo passenger-install-nginx-module
 #install postgres
 sudo apt-get install postgresql postgresql-contrib
 sudo apt-get install libpq-dev
+
+
+#dependency for mysql2 gem
+sudo apt-get install libmysqlclient-dev
+
 sudo -i -u postgres
 psql
 create role myod WITH PASSWORD 'xxx' CREATEDB LOGIN;
