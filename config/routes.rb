@@ -7,6 +7,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'main#home'
 
+  namespace :api do
+    resources :products, only: [] do
+      get 'search', on: :collection
+    end
+  end
+
+  get '*path', to: 'main#home'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

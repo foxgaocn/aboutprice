@@ -32,6 +32,8 @@ gem 'devise'
 
 gem 'thinking-sphinx'
 gem 'mysql2'
+gem 'react-rails'
+gem 'react-router-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

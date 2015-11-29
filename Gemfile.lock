@@ -47,6 +47,10 @@ GEM
     angular-ui-bootstrap-rails (0.13.0)
     angularjs-rails (1.4.0)
     arel (6.0.0)
+    babel-source (5.8.34)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -75,6 +79,7 @@ GEM
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
     columnize (0.9.0)
+    connection_pool (2.2.0)
     debug_inspector (0.0.2)
     devise (3.4.1)
       bcrypt (~> 3.0)
@@ -180,6 +185,16 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    react-rails (1.4.2)
+      babel-transpiler (>= 0.7.0)
+      coffee-script-source (~> 1.8)
+      connection_pool
+      execjs
+      rails (>= 3.2)
+      tilt
+    react-router-rails (0.13.3.1)
+      rails (>= 3.1)
+      react-rails (>= 0.12)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     riddle (1.5.12)
@@ -273,6 +288,8 @@ DEPENDENCIES
   pry-rails
   pry-stack_explorer
   rails (= 4.2.0)
+  react-rails
+  react-router-rails
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

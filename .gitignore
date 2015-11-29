@@ -11,3 +11,10 @@
 /log/*
 !/log/.keep
 /tmp
+db/sphinx/development/product_core.spa
+db/sphinx/development/product_core.spd
+db/sphinx/development/product_core.spe
+db/sphinx/development/product_core.sph
+db/sphinx/development/product_core.spi
+db/sphinx/development/product_core.spp
+db/sphinx/development/product_core.sps

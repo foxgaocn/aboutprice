@@ -4,7 +4,6 @@ class MainController < ApplicationController
   DEMO_USER = 'guest@test.com'
 
   def home
-    render plain: "Under construction"
   end
 
 end

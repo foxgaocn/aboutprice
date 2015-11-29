@@ -13,8 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require angular
-//= require angular-resource
-//= require angular-route
-//= require angular-ui-bootstrap-tpls
-//= require_tree .
+//= require react
+//= require react_ujs
+//= require react_router.min
+//= require history.min
+//= require components
+
