@@ -10,24 +10,50 @@ var Search = React.createClass({
     this.props.history.pushState(null, '/search', {term: this.props.location.query.term, cid: obj.cid, sid: obj.sid})
   },
 
-  search: function(props) {
+  search: function(props, merge) {
     url = "api/products/search?term=" + props.location.query.term
     cid = props.location.query.cid
     sid = props.location.query.sid
+    page = props.location.query.page
     if(cid != null)
       url += "&cid=" + cid
     if(sid != null)
       url += "&sid=" + sid
+    if(page && page > 1){
+      url += "&p=" + page
+    }
     
     $.get(url, function(result) {
       if (this.isMounted()) {
+        products = result.products
+        if(merge) products = _.union(this.state.products, products)//when load next page
         this.setState({
           categories: result.categories,
           shops: result.shops,
-          products: result.products
+          products: products
         });
       }
     }.bind(this));
+  },
+
+  getMore: function(){
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
+      sum = _.reduce(this.state.shops, function(memo, shop){ return memo + shop.count; }, 0);
+      if(this.props.location.query.page == null){
+        if(sum <= 20) $(window).unbind('scroll');
+        else{
+          this.props.location.query.page = 2
+          this.search(this.props, true)
+        }
+      }else{
+        if(this.page * 20 >= sum)
+          $(window).unbind('scroll');
+        else{
+          this.props.location.query.page++
+          this.search(this.props, true)
+        }
+      } 
+    }
   },
 
   componentWillReceiveProps: function(nextProps, nextState) {
@@ -40,6 +66,8 @@ var Search = React.createClass({
 
   componentDidMount: function() {
     this.search(this.props);
+    var throttled = _.throttle(this.getMore, 100);
+    $(window).scroll(throttled);
   },
   
   render: function() {

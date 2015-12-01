@@ -14,7 +14,8 @@ class Product < ActiveRecord::Base
     history || "{\"#{created_at.to_date.to_s}\": #{price}}"
   end
 
-  def self.query(term, cid, sid)
+  def self.query(term, cid, sid, page)
+    current_page = page || 1
     result = {categories: [], shops: [], products: []}
     
     #always get all the categories
@@ -35,7 +36,7 @@ class Product < ActiveRecord::Base
     end
 
     #get products based on categories and sellers
-    prod_condition = {with: {}}
+    prod_condition = {page: current_page, with: {}}
     prod_condition[:with].merge!({:category_id => cid.to_i}) unless cid.empty?
     prod_condition[:with].merge!({:shop_id => sid.split(',').map{|id| id.to_i}}) unless sid.empty?
     products = Product.search term, prod_condition
