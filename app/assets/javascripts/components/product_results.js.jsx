@@ -12,10 +12,10 @@ var ProductResults = React.createClass({
       case 2:
         if(_.sortedIndex(values, price) === 0){
           highest = _.max(values)
-          return {code: 4, message: "Down from $" + highest + ", price ok"}
+          return {code: 4, message: "Down from $" + highest/100 + ", price ok"}
         }
         lowest = _.min(values)
-        return {code: 2, message: "Was $" + lowest + ", maybe wait"}
+        return {code: 2, message: "Was $" + lowest/100 + " previously, maybe wait"}
       case 3:
         index = _.sortedIndex(values, price)
         if(index === 0)
