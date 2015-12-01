@@ -1,10 +1,26 @@
 var SearchShops = React.createClass({
+  shopChanged: function(e)
+  {
+    newValue = parseInt(e.target.value)
+    index = this.props.filter.indexOf(newValue)
+
+    if(e.target.checked && index == -1){
+      this.props.filter.push(newValue)
+      this.props.onFilterChange({key: "shop_ids", value: this.props.filter})
+    }
+    else if(!e.target.checked && index > -1){
+      this.props.filter.splice(index, 1)
+      this.props.onFilterChange({key: "shop_ids", value: this.props.filter})
+    }
+  },
 
   genShop: function(shop){
+    checked = this.props.filter.indexOf(shop.id) > -1
     return(
-      <div key={shop.id}> 
-        <div>{shop.name} </div>
-        <div> <span className='red'> {shop.count} </span> items </div>
+      <div key={shop.id} className="row">
+        <label className="filter-label">
+          <input type="checkbox" value={shop.id} name='shop' onChange={this.shopChanged} checked={checked}>{shop.name}</input>
+        </label>
       </div>)
   },
 
@@ -20,10 +36,8 @@ var SearchShops = React.createClass({
 
     return(
       <div className="row">
-        <div className="col-md-12">
-          <h3> By Shop </h3>
-        </div>
-        {items}
+        <h4>Seller</h4>
+        {items} 
       </div>
     )
   }

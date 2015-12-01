@@ -1,10 +1,18 @@
 var SearchCategories = React.createClass({
 
+  categoryChanged: function(e){
+    if(e.target.checked){
+      this.props.onFilterChange({key: "category_id", value: parseInt(e.target.value)})
+    }
+  },
+
   genCategroy: function(category){
+    checked = category.id == this.props.filter
     return(
-      <div key={category.id}> 
-        <div>{category.name} </div>
-        <div> <span className='red'> {category.count} </span> items </div>
+      <div key={category.id} className="row">
+        <label className="filter-label">
+          <input type="radio" value={category.id} name='category' onChange={this.categoryChanged} checked={checked}>{category.name}</input>
+        </label>
       </div>)
   },
 
@@ -20,10 +28,8 @@ var SearchCategories = React.createClass({
 
     return(
       <div className="row">
-        <div className="col-md-12">
-          <h3> By Category </h3>
-        </div>
-        {items}
+        <h4>Category</h4>
+        {items} 
       </div>
     )
   }

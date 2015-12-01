@@ -10,7 +10,7 @@ var SearchBar = React.createClass({
 
   render: function() {
     return (
-      <div className="row">
+      <div className="row searchBar">
         <input type="search" ref="term" className="form-control" placeholder="search product here" onKeyDown={this.keyDown}/>
       </div>
     );

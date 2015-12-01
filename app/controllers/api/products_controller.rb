@@ -24,29 +24,13 @@ module Api
     # }
     
     def search
-      query = Riddle::Query.escape(params[:term])
+      query = Riddle::Query.escape(params[:term].to_s)
+      cid = Riddle::Query.escape params[:cid].to_s
+      sid = Riddle::Query.escape params[:sid].to_s
+
       render {} if query.empty?
 
-      products = Product.search_for_ids query, 
-        :group_by => :category_id, 
-        :order_group_by => 'count(*) desc'
-      result = {categories: [], shops: [], products: []}
-      products.each_with_group_and_count do |prod_id, category_id, count|
-        result[:categories] << {id: category_id, name: CATEGORY_IDS[category_id], count: count}
-      end
-
-      products = Product.search_for_ids query, 
-        :group_by => :shop_id, 
-        :order_group_by => 'count(*) desc'
-      products.each_with_group_and_count do |prod_id, shop_id, count|
-        result[:shops] << {id: shop_id, name: SHOP_IDS[shop_id], count: count}
-      end
-
-      products = Product.search query
-      products.each do |product|
-        result[:products] << {id: product.id, name: product.name, url: product.url, price: product.price, img: product.img, history: product.history}
-      end
-
+      result = Product.query(query, cid, sid)
       render json: result
     end
   end

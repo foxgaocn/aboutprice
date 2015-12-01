@@ -4,7 +4,7 @@ var Home = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div id="main_search">
         <SearchBar history={this.props.history}/>
       </div>
     );
