@@ -1,21 +1,29 @@
 var SearchShops = React.createClass({
+  getInitialState: function() {
+    if(this.props.filter == null)
+      this.filter = []
+    else
+      this.filter = this.props.filter.split(",")
+    return {};
+  },
+
   shopChanged: function(e)
   {
-    newValue = parseInt(e.target.value)
-    index = this.props.filter.indexOf(newValue)
+    newValue = e.target.value
+    index = this.filter.indexOf(newValue)
 
     if(e.target.checked && index == -1){
-      this.props.filter.push(newValue)
-      this.props.onFilterChange({key: "shop_ids", value: this.props.filter})
+      this.filter.push(newValue)
+      this.props.onFilterChange({key: "sid", value: this.filter.join(",")})
     }
     else if(!e.target.checked && index > -1){
-      this.props.filter.splice(index, 1)
-      this.props.onFilterChange({key: "shop_ids", value: this.props.filter})
+      this.filter.splice(index, 1)
+      this.props.onFilterChange({key: "sid", value: this.filter.join(",")})
     }
   },
 
   genShop: function(shop){
-    checked = this.props.filter.indexOf(shop.id) > -1
+    checked = this.filter.indexOf(shop.id.toString()) > -1
     return(
       <div key={shop.id} className="row">
         <label className="filter-label">

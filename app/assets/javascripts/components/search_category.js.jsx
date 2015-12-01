@@ -2,7 +2,7 @@ var SearchCategories = React.createClass({
 
   categoryChanged: function(e){
     if(e.target.checked){
-      this.props.onFilterChange({key: "category_id", value: parseInt(e.target.value)})
+      this.props.onFilterChange({key: "cid", value: parseInt(e.target.value)})
     }
   },
 
