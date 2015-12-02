@@ -13,7 +13,7 @@ var ProductResults = React.createClass({
   genCurrentProduct: function(product){
     return (<div className="product-inline">
               <div className="cross" onClick={this.closeCurrent}>X</div>
-              <Product product={product}/>
+              <ProductInline product={product} closeInline={this.closeCurrent}/>
             </div>)
   },
 
@@ -55,7 +55,7 @@ var ProductResults = React.createClass({
     })
   },
 
-  closeCurrent: function(e){
+  closeCurrent: function(){
     this.setState({
       current_product: null
     })

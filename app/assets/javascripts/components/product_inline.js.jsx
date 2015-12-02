@@ -1,4 +1,4 @@
-var Product = React.createClass({
+var ProductInline = React.createClass({
   render: function(){
     product = this.props.product
 
@@ -14,7 +14,7 @@ var Product = React.createClass({
         </div>
         <div className="col-md-8">
           <div>
-            <h3><a href={product.url} target='blank'>{product.name}</a></h3>
+            <h3><a href='#' onClick={this.props.closeInline}>{product.name}</a></h3>
           </div>
           <div>
             <span className='gray'>from: {product.shop}</span>
@@ -34,7 +34,6 @@ var Product = React.createClass({
               <button type="button" className="btn btn-success">Go to shop</button>
             </a>
           </div>
-          <div class="addthis_sharing_toolbox"></div>
         </div>
       </div>)
   }

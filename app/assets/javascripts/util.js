@@ -6,8 +6,23 @@ Util = {
     return (date - this.startDate)/3600000
   },
 
+  todaytoHours: function(){
+    return ((new Date()) -  this.startDate)/3600000
+  },
+
   hoursToDate: function(hours){
     return new Date(this.startDate.getTime() + hours*3600000)
+  },
+
+  moveCursorToEnd: function(el) {
+    if (typeof el.selectionStart == "number") {
+        el.selectionStart = el.selectionEnd = el.value.length;
+    } else if (typeof el.createTextRange != "undefined") {
+        el.focus();
+        var range = el.createTextRange();
+        range.collapse(false);
+        range.select();
+    }
   },
 
   priceOk: function(history, price){

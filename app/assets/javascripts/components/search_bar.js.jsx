@@ -13,6 +13,11 @@ var SearchBar = React.createClass({
     _.throttle(this.performSearch, 300)()
   },
 
+  componentDidMount: function(){
+    this.refs.term.getDOMNode().focus(); 
+    Util.moveCursorToEnd(this.refs.term)
+  },
+
   render: function() {
     return (
       <div className="row searchBar">
