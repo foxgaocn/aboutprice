@@ -1,56 +1,36 @@
 var ProductResults = React.createClass({
 
-  priceOk: function(history, price){
-    data = JSON.parse(history)
-    keys = Object.keys(data)
-    values = []
-    keys.forEach(function(k){values.push(data[k])})
-    values = _.uniq(values)
-    switch(values.length){
-      case 1:
-        return {code: 3, message:'Price never changed. Your choice'}
-      case 2:
-        if(_.sortedIndex(values, price) === 0){
-          highest = _.max(values)
-          return {code: 4, message: "Down from $" + highest/100 + ", price ok"}
-        }
-        lowest = _.min(values)
-        return {code: 2, message: "Was $" + lowest/100 + " previously, maybe wait"}
-      case 3:
-        index = _.sortedIndex(values, price)
-        if(index === 0)
-          return {code: 5, message: "Lowest ever, price ok"}
-        else if(index == 1)
-          return {code: 3, message: "Average price, up to you"}
-        else{
-          return {code: 2, message: "Price not ok, better wait"}
-        }
-        break;
-      default:
-        index = _.sortedIndex(values, price)
-        if(index === 0)
-          return {code: 5, message: "Lowest ever, price ok"}
-        else if(index == 1)
-          return {code: 4, message: "Not too bad, can go with it"}
-        else if(index === values.length - 1)
-          return {code: 1, message: "Price not ok, avoid"}
-        else if(index == values.length - 2)
-          return {code: 2, message: "You may find better price later"}
-        else
-          return {code: 3, message: "Average price, up to you"}
-    }
+  getInitialState: function() {
+    return {current_product: null};
   },
   
   genProduct: function(product){
-    msg = this.priceOk(product.history, product.price)
+    if(this.state.current_product == product.id)
+      return this.genCurrentProduct(product)
+    return this.genNormalProduct(product)
+  },
+
+  genCurrentProduct: function(product){
+    return (<div className="product-inline">
+              <div className="cross" onClick={this.closeCurrent}>X</div>
+              <Product product={product}/>
+            </div>)
+  },
+
+  genNormalProduct: function(product){
+    msg = Util.priceOk(product.history, product.price)
+    var stars = [];
+    for (var i = 0; i < msg.code; i++) {
+      stars.push(<span className='star'>☆</span>);
+    }
     return(
       <div key={product.id} className="row product-item">
-        <div className="col-md-3 product-image vcenter">
+        <div className="col-md-3 product-image vcenter" onClick={this.setCurrent} data={product.id}>
           <img className="img-responsive" src={product.img}/>
         </div>
-        <div className="col-md-6 vcenter" >
-          <h4>
-            <a href={product.url} target="_blank">{product.name}</a>
+        <div className="col-md-6 vcenter">
+          <h4 className='link' onClick={this.setCurrent} data={product.id}>
+            {product.name}
           </h4>
           <div>
             <span className='price'>${product.price/100}</span> 
@@ -58,11 +38,27 @@ var ProductResults = React.createClass({
           </div>
         </div>
         <div className="col-md-3 vcenter">
-           <p>{msg.code}</p>
-           <p>{msg.message}</p>
-           <p>{product.history}</p>
+          <div>
+            <span className='priceok'>Price OK?</span>
+            {stars}
+          </div>
+          <div className="link" onClick={this.setCurrent} data={product.id}>  
+            {msg.message}
+          </div>
         </div>
       </div>)
+  },
+
+  setCurrent: function(e){
+    this.setState({
+      current_product: parseInt(e.target.attributes["data"].value)
+    })
+  },
+
+  closeCurrent: function(e){
+    this.setState({
+      current_product: null
+    })
   },
 
   render: function(){

@@ -14,11 +14,35 @@
   }
 }
 
-.price{
-  color: #222;
-  font-weight: bold;
-  font-size: 16px;
+.star{
+  color: #EF6C0F;
 }
+
+.priceok{
+  color: #aaa;
+  font-size: 11px;
+  margin-right: 5px;
+}
+
+.link{
+  color: #428bca;
+  &:hover{
+    text-decoration: underline;
+    color: #0D566E;
+    cursor: pointer;
+  }
+}
+
+.price{
+  color: #EF6C0F;
+  font-size: 16px;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+.gray{
+  color: #aaa;
+}
+
 .source{
   color: #aaa;
   margin-left: 8px;
@@ -28,6 +52,37 @@
     display: inline-block;
     vertical-align: middle;
     float: none;
+}
+
+.main-image{
+  text-align: center;
+  vertical-align: middle;
+  img{
+    width: 80%;
+    height: auto;
+  }
+}
+
+.product-inline{
+  border: 1px solid #ccc;
+  padding: 15px 15px 15px 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  .cross{
+    position: absolute;
+    text-align: center;
+    top:10px;
+    right: 0px;
+    color: #aaa;
+    width: 35px;
+    height: 35px;
+    z-index: 100;
+    &:hover{
+      cursor: pointer;
+      color: #333;
+    }
+  }
 }
 
 #main_search{

@@ -20,6 +20,7 @@ class Product < ActiveRecord::Base
     
     #always get all the categories
     products = Product.search_for_ids term, 
+      :star => true,
       :group_by => :category_id, 
       :order_group_by => 'count(*) desc'
     products.each_with_group_and_count do |prod_id, category_id, count|
@@ -27,7 +28,7 @@ class Product < ActiveRecord::Base
     end
 
     #get sellers based on categories
-    shop_condition = {:group_by => :shop_id, :order_group_by => 'count(*) desc'}
+    shop_condition = {:group_by => :shop_id, :order_group_by => 'count(*) desc', :star => true,}
     shop_condition[:with] = {:category_id => cid.to_i} unless cid.empty?
     products = Product.search_for_ids term, shop_condition
       
@@ -36,7 +37,7 @@ class Product < ActiveRecord::Base
     end
 
     #get products based on categories and sellers
-    prod_condition = {page: current_page, with: {}}
+    prod_condition = {page: current_page, :star => true, with: {}}
     prod_condition[:with].merge!({:category_id => cid.to_i}) unless cid.empty?
     prod_condition[:with].merge!({:shop_id => sid.split(',').map{|id| id.to_i}}) unless sid.empty?
     products = Product.search term, prod_condition
