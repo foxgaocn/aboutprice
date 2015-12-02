@@ -31,7 +31,7 @@ var Search = React.createClass({
           categories: result.categories,
           shops: result.shops,
           products: products
-        });
+        })
       }
     }.bind(this));
   },
@@ -40,14 +40,14 @@ var Search = React.createClass({
     if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
       sum = _.reduce(this.state.shops, function(memo, shop){ return memo + shop.count; }, 0);
       if(this.props.location.query.page == null){
-        if(sum <= 20) $(window).unbind('scroll');
+        if(sum <= 20) return;
         else{
           this.props.location.query.page = 2
           this.search(this.props, true)
         }
       }else{
         if(this.page * 20 >= sum)
-          $(window).unbind('scroll');
+          return;
         else{
           this.props.location.query.page++
           this.search(this.props, true)
