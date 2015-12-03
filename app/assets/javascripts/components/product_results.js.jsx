@@ -25,10 +25,12 @@ var ProductResults = React.createClass({
     }
     return(
       <div key={product.id} className="row product-item">
-        <div className="col-md-3 product-image vcenter" onClick={this.setCurrent} data={product.id}>
-          <img className="img-responsive" src={product.img}/>
+        <div className="col-md-3" onClick={this.setCurrent} data={product.id}>
+          <div className="product-image">
+            <img src={product.img}/>
+          </div>
         </div>
-        <div className="col-md-6 vcenter">
+        <div className="col-md-6 product-info">
           <h4 className='link' onClick={this.setCurrent} data={product.id}>
             {product.name}
           </h4>
@@ -37,7 +39,7 @@ var ProductResults = React.createClass({
             <span className='source'>from: {product.shop}</span>
           </div>
         </div>
-        <div className="col-md-3 vcenter">
+        <div className="col-md-3 product-price">
           <div>
             <span className='priceok'>Price OK?</span>
             {stars}

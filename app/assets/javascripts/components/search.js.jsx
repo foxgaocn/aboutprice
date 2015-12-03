@@ -73,7 +73,7 @@ var Search = React.createClass({
   render: function() {
     filter = {category_id: this.props.location.query.cid, shop_ids: this.props.location.query.sid}
     return (
-      <div>
+      <div className='container'>
         <SearchBar history={this.props.history} term={this.props.location.query.term}/>
         <div className="row">
           <SearchFilter history={this.props.history} categories={this.state.categories} shops={this.state.shops} filter={filter} onFilterChange={this.setFilter}/>
