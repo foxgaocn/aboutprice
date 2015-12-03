@@ -52,6 +52,9 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-glyphicons (0.0.1)
+      railties (>= 3.0)
+      sass (>= 3.2)
     bootstrap-sass (3.2.0.0)
       sass (~> 3.2)
     builder (3.2.2)
@@ -267,6 +270,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-glyphicons
   bootstrap-sass
   capistrano
   capistrano-rails

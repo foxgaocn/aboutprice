@@ -21,7 +21,14 @@ var SearchBar = React.createClass({
   render: function() {
     return (
       <div className="row searchBar">
-        <input type="search" ref="term" onChange={this.termChange} defaultValue={this.props.term} className="form-control" placeholder="search product here" onKeyDown={this.keyDown}/>
+        <div className="input-group">
+          <input type="search" ref="term" onChange={this.termChange} defaultValue={this.props.term} className="form-control" placeholder="search product here" onKeyDown={this.keyDown}/>
+          <span className="input-group-btn">
+            <button className="btn btn-default" type="button" onClick={this.performSearch}>
+              <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+          </span>
+        </div>
       </div>
     );
   }
