@@ -14,6 +14,10 @@ class Product < ActiveRecord::Base
     history || "{\"#{created_at.to_date.to_s}\": #{price}}"
   end
 
+  def price_was
+    @price_was || 0
+  end
+
   def price_drop
     return @price_drop if @price_drop
     keys = history_hash.keys
@@ -21,15 +25,15 @@ class Product < ActiveRecord::Base
     if keys.length < 2 || history_hash.keys.last != today_str
       @price_drop = 0 
     else
+      @price_was = history_hash[keys[keys.length-2]]
       @price_drop = history_hash[keys[keys.length-2]] - history_hash[keys[keys.length-1]]
     end
     return @price_drop
   end
 
   def price_drop_percent
-    return 0 if @price_drop == 0
-    keys = history_hash.keys
-    (price_drop * 1.0) / history_hash[keys[keys.length-1]]
+    return 0 if price_drop == 0
+    (price_drop * 1.0) / price_was
   end
 
 
@@ -67,36 +71,8 @@ class Product < ActiveRecord::Base
     result
   end
 
-  # [
-  #   {"id": 1, "name": "TV", "products":[
-  #       {
-  #         "id": 2,
-  #         "name": "sony",
-  #         "price": 23,
-  #         "price_change": -12},
-  #       {
-  #         "id": 4,
-  #         "name": "lg",
-  #         "price": 33,
-  #         "price_change": -22
-  #       }
-  #     ]},
-  #   {"id": 3, "name": "Home", "products":[
-  #       {
-  #         "id": 2,
-  #         "name": "lg",
-  #         "price": 23,
-  #         "price_change": -12},
-  #       {
-  #         "id": 4,
-  #         "name": "lg",
-  #         "price": 33,
-  #         "price_change": -22
-  #       }
-  #     ]}
-  # ]
-  def self.top10
-    tops = Rails.cache.fetch('top10')
+  def self.top_products
+    tops = Rails.cache.fetch('top_products')
     return tops if tops
     tops=[]
 
@@ -104,25 +80,65 @@ class Product < ActiveRecord::Base
       current = {id: cat, products_by_price: [], products_by_percent: []}
       tops << current
       Product.where(category_id: cat).find_each(batch_size: 1000) do |product|
-        put_if_top(current[:products_by_price], 7, product, :price_drop)
-        put_if_top(current[:products_by_percent], 3, product, :price_drop_percent)
+        push_by_price(current, 7, product)
+        push_by_percentage(current, 3, product)
       end
     end
-    Rails.cache.write('top10', tops)
+    Rails.cache.write('top_products', tops)
     tops
   end
 
+  def self.top2
+    tops = Rails.cache.fetch('top2')
+    return tops if tops
+    tops = []
+    top_products.map do |category|
+      obj = {  id: category[:id], 
+               name: CATEGORY_IDS[category[:id]]
+            }
+      if(category[:products_by_price].length > 0)
+        product = category[:products_by_price][0]
+        obj[:products_by_price] = ProductWithPriceDropSerializer.new(product).serializable_hash
+      end
+
+      if(category[:products_by_percent].length > 0)
+        product = category[:products_by_percent][0]
+        obj[:products_by_percent] = ProductWithPricePercentSerializer.new(product).serializable_hash
+      end
+      tops << obj if(obj[:products_by_price])
+    end
+    Rails.cache.write('top2', tops)
+    tops
+  end
+
+
   private
-  def self.put_if_top(target, count, product, criteria)
-    return if product.send(criteria) <= 0
+  def self.push_by_price(obj, count, product)
+    target = obj[:products_by_price]
+    return if product.price_drop <= 0
     if(target.length < count - 1)
       target << product
     elsif(target.length == count-1)
       target << product
-      target.sort!{|a,b| b.send(criteria) <=> a.send(criteria)}
-    elsif(target[count-1].send(criteria) < product.send(criteria))
+      target.sort!{|a,b| b.price_drop <=> a.price_drop}
+    elsif(target[count-1].price_drop < product.price_drop)
       target[count-1] = product
-      target.sort!{|a,b| b.send(criteria) <=> a.send(criteria)}
+      target.sort!{|a,b| b.price_drop <=> a.price_drop}
+    end
+  end
+
+  def self.push_by_percentage(obj, count, product)
+    existing = obj[:products_by_price]
+    target = obj[:products_by_percent]
+    return if product.price_drop_percent <= 0 || existing.include?(product)
+    if(target.length < count - 1)
+      target << product
+    elsif(target.length == count-1)
+      target << product
+      target.sort!{|a,b| b.price_drop_percent <=> a.price_drop_percent}
+    elsif(target[count-1].price_drop_percent < product.price_drop_percent)
+      target[count-1] = product
+      target.sort!{|a,b| b.price_drop_percent <=> a.price_drop_percent}
     end
   end
 

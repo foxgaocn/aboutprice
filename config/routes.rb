@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   namespace :api do
     resources :products, only: [] do
       get 'search', on: :collection
+      get 'top2', on: :collection
+      get 'top10', on: :collection
     end
   end
 

@@ -45,8 +45,8 @@ describe "Product" do
   end
 
 
-  describe "self.top10" do
-    subject {Product.top10}
+  describe "self.top_products" do
+    subject {Product.top_products}
 
     context 'when no product' do
       it 'should return no product' do
@@ -80,9 +80,9 @@ describe "Product" do
           FactoryGirl.create(:product, history: self.send("history_#{i}".to_sym), url: i.to_s)
         end
         tops = subject
-        expect(tops[0][:products].length).to eql 10
-        expect(tops[0][:products][9].price_score).to be < tops[0][:products][8].price_score
-        expect(tops[0][:products][9].price_score).to be > Product.first.price_score
+        expect(tops[0][:products_by_percent].length).to eql 3
+        expect(tops[0][:products_by_percent][2].price_drop_percent).to be < tops[0][:products_by_percent][1].price_drop_percent
+        expect(tops[0][:products_by_percent][2].price_drop_percent).to be > Product.first.price_drop_percent
       end
     end
 
@@ -99,10 +99,10 @@ describe "Product" do
           FactoryGirl.create(:product, history: self.send("history_#{i}".to_sym), url: i.to_s)
         end
         tops = subject
-        tops[0][:products].map {|p| puts p.price_score}
-        expect(tops[0][:products].length).to eql 10
-        expect(tops[0][:products][9].price_score).to be < tops[0][:products][8].price_score
-        expect(tops[0][:products][9].price_score).to be > Product.first.price_score
+        tops[0][:products_by_price].map {|p| puts p.price_drop}
+        expect(tops[0][:products_by_price].length).to eql 7
+        expect(tops[0][:products_by_price][6].price_drop).to be < tops[0][:products_by_price][5].price_drop
+        expect(tops[0][:products_by_price][6].price_drop).to be > Product.first.price_drop
       end
     end
 

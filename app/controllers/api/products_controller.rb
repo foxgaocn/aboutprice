@@ -39,23 +39,7 @@ module Api
     end
 
     def top2
-      ret = []
-      Product.top10.map do |category|
-        if(category[:products_by_price].length > 0)
-          product = category[:products_by_price][0]
-          ret << {  id: category[:id], 
-                    name: CATEGORY_IDS[category[:id]], 
-                    product_by_price: ProductWithPriceDropSerializer.new(product).serializable_hash}
-        end
-
-        if(category[:products_by_percent].length > 0)
-          product = category[:products_by_percent][0]
-          ret << {  id: category[:id], 
-                    name: CATEGORY_IDS[category[:id]], 
-                    product_by_percent: ProductWithPricePercentSerializer.new(product).serializable_hash}
-        end
-      end
-      render json: result.to_json
+      render json: Product.top2.to_json
     end
   end
 end
