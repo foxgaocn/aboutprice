@@ -31,18 +31,19 @@ Util = {
     values = []
     keys.forEach(function(k){values.push(data[k])})
     values = _.uniq(values)
+    values = _.sortBy(values)
     switch(values.length){
       case 1:
         return {code: 3, message:'Price never changed. Your choice'}
       case 2:
-        if(_.sortedIndex(values, price) === 0){
+        if(_.indexOf(values, price) === 0){
           highest = _.max(values)
           return {code: 4, message: "Down from $" + highest/100 + ", price ok"}
         }
         lowest = _.min(values)
         return {code: 2, message: "Was $" + lowest/100 + " previously, maybe wait"}
       case 3:
-        index = _.sortedIndex(values, price)
+        index = _.indexOf(values, price)
         if(index === 0)
           return {code: 5, message: "Lowest ever, good deal"}
         else if(index == 1)
@@ -52,7 +53,7 @@ Util = {
         }
         break;
       default:
-        index = _.sortedIndex(values, price)
+        index = _.indexOf(values, price)
         if(index === 0)
           return {code: 5, message: "Lowest ever, good deal"}
         else if(index == 1)
