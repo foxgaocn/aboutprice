@@ -33,6 +33,7 @@ gem 'mysql2'
 gem 'react-rails'
 gem 'react-router-rails'
 gem 'bootstrap-glyphicons'
+gem 'active_model_serializers'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -60,5 +61,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+  gem 'ffaker', require: false
 end
 

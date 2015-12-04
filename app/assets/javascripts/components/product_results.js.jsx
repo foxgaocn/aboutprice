@@ -41,7 +41,7 @@ var ProductResults = React.createClass({
         </div>
         <div className="col-md-3 product-price">
           <div>
-            <span className='priceok'>Price OK?</span>
+            <span className='priceok'>Price rating</span>
             {stars}
           </div>
           <div className="link" onClick={this.setCurrent} data={product.id}>  

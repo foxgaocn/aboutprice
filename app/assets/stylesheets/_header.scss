@@ -1,0 +1,36 @@
+#header-row{
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feccb1+0,fb955e+59 */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ededed+90 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #ededed 90%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#ededed 90%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #ffffff 0%,#ededed 90%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+
+  padding: 15px 0;
+}
+
+#search-bar{
+  padding-top: 5px;
+  padding-bottom: 10px;
+  .btn{
+    border: 1px solid transparent;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    height: 34px;
+    margin: 0;
+    outline: none;
+    padding: 0 0;
+    width: 60px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #4285f4;
+    background: -webkit-linear-gradient(top,#4387fd,#4683ea);
+    background: linear-gradient(top,#4387fd,#4683ea);
+    .glyphicon-search{
+      color: #fff;
+    }
+  }
+}
