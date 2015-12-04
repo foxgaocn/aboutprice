@@ -22,7 +22,11 @@ module Api
     #     {"id",2, name": "fasd", "url": "dfafdsa", "price": 345}
     #   ]
     # }
-    
+    def show
+      p = Product.find(params[:id])
+      render json: ProductSerializer.new(p).to_json
+    end
+
     def search
       query = Riddle::Query.escape(params[:term].to_s)
       cid = Riddle::Query.escape params[:cid].to_s

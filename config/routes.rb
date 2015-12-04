@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'main#home'
 
   namespace :api do
-    resources :products, only: [] do
+    resources :products, only: [:show] do
       get 'search', on: :collection
       get 'top2', on: :collection
       get 'top10', on: :collection

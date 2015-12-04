@@ -24,14 +24,14 @@ var ProductResults = React.createClass({
       stars.push(<span className='star'>☆</span>);
     }
     return(
-      <div key={product.id} className="row product-item">
-        <div className="col-md-3" onClick={this.setCurrent} data={product.id}>
+      <div key={product.id} data={product.id} className="row product-item" onClick={this.setCurrent}>
+        <div className="col-md-3">
           <div className="product-image">
             <img src={product.img}/>
           </div>
         </div>
         <div className="col-md-6 product-info">
-          <h4 className='link' onClick={this.setCurrent} data={product.id}>
+          <h4 className='link'>
             {product.name}
           </h4>
           <div>
@@ -44,7 +44,7 @@ var ProductResults = React.createClass({
             <span className='priceok'>Price rating</span>
             {stars}
           </div>
-          <div className="link" onClick={this.setCurrent} data={product.id}>  
+          <div className="link">  
             {msg.message}
           </div>
         </div>
@@ -53,7 +53,7 @@ var ProductResults = React.createClass({
 
   setCurrent: function(e){
     this.setState({
-      current_product: parseInt(e.target.attributes["data"].value)
+      current_product: parseInt(e.currentTarget.attributes["data"].value)
     })
   },
 

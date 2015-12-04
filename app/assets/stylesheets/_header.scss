@@ -34,3 +34,41 @@
     }
   }
 }
+
+.top2{
+  .image{
+    height: 200px;
+    text-align: center;
+    position: relative;
+    img{
+      height: 100%;
+      width: auto;
+    };
+    .down{
+      position: absolute;
+      top: 2px;
+      right: 2px;
+    }
+  }
+  .top-product{
+    margin-top: 5px;
+    border: 1px solid #f5f5f5;
+    .info{
+      padding-bottom: 10px;
+      padding-left: 10px;
+      background: linear-gradient(to bottom,  #ffffff 0%,#ededed 90%);
+      .main-title{
+        text-align: center;
+        height: 68px;
+        overflow: hidden;
+        text-overflow: ellipsis;  
+      }
+      .goto{
+        text-align: center;
+        border-top: 1px #ddd solid;
+        margin-top: 5px;
+        padding-top: 5px;
+      }
+    }
+  }
+}

@@ -65,7 +65,7 @@ class Product < ActiveRecord::Base
     prod_condition[:with].merge!({:shop_id => sid.split(',').map{|id| id.to_i}}) unless sid.empty?
     products = Product.search term, prod_condition
     products.each do |product|
-      result[:products] << {id: product.id, name: product.name, shop: product.shop, url: product.url, price: product.price, img: product.img, history: product.history_filled}
+      result[:products] << ProductSerializer.new(product).serializable_hash
     end
 
     result

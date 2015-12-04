@@ -25,7 +25,9 @@ var SearchBar = React.createClass({
           <div className='row'>
             <div className='col-md-6 col-sm-9'>
               <span>
-                <img alt="Price Advisor" src="http://res.cloudinary.com/www-kunpawn-com-au/image/upload/v1449183242/logo_tkoyl4.png"/>
+                <a href="/">
+                  <img alt="Price Advisor" src="http://res.cloudinary.com/www-kunpawn-com-au/image/upload/v1449183242/logo_tkoyl4.png"/>
+                </a>
               </span>
             </div>
             <div className='col-md-6 col-sm-3'>
