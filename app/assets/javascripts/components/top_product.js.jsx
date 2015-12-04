@@ -26,7 +26,7 @@ var TopProduct = React.createClass({
       stars.push(<span className='star'>☆</span>);
     }
     return(
-      <div className=".container-fluid">
+      <div>
         <div className="row" onClick={this.props.closeInline}>
           <div className="col-md-4 main-image">
             <img src={product.img}/>

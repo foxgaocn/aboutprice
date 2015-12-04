@@ -38,9 +38,9 @@ var Today = React.createClass({
   down_sign: function(product, type){
     if(type == 'by_price')
     {
-      return <div className='down'>{'$' + product.price_drop/100 + ' less'}</div>
+      return <div className='down'>{'$' + product.price_drop/100 + ' off'}</div>
     }
-    return <div className='down'>{(product.price_drop_percent*100).toFixed(2) + '% less'}</div>
+    return <div className='down'>{(product.price_drop_percent*100).toFixed(2) + '% off'}</div>
   },
 
   genProduct: function(product, type){
@@ -60,7 +60,6 @@ var Today = React.createClass({
           </div>
           <div className="row">
             <div className="col-sm-6">
-              <span className='gray'>now:</span>
               <span className='price'>${product.price/100.0}</span>
             </div>
             <div className="col-sm-6">
@@ -82,9 +81,9 @@ var Today = React.createClass({
   getCategory: function(category){
     return(
     <div className="col-md-4 col-sm-12">
-      <div className="panel panel-info">
-        <div className="panel-heading">{category.name}</div>
-        <div className="panel-body top2">
+      <div className="panel panel-default top-category">
+        <div className="panel-heading cat-heading">{category.name}</div>
+        <div className="panel-body">
           {this.genProduct(category.products_by_price, 'by_price')}
           {this.genProduct(category.products_by_percent, 'by_percent')}
         </div>
@@ -95,9 +94,14 @@ var Today = React.createClass({
   render: function(){
     var categories = this.state.top2.map(this.getCategory)
     return (
-      <div className="container">
-        <div className="row">
-          {categories}
+      <div>
+        <div id="toptitle">
+          <span>Top advice today</span>
+        </div>
+        <div className="container">
+          <div className="row">
+            {categories}
+          </div>
         </div>
       </div>
       )
