@@ -70,10 +70,11 @@
     .image{
       height: 200px;
       text-align: center;
+      overflow: hidden;
       position: relative;
       img{
         height: 100%;
-        width: 100%;
+        width: auto;
       };
       .down{
         position: absolute;

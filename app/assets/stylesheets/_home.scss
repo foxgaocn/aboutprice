@@ -73,8 +73,9 @@
   .product-image{
     text-align: center;
     height: 150px;
+    overflow: hidden;
     img{
-      width: 100%;
+      width: auto;
       height: 100%;
     }
   }
