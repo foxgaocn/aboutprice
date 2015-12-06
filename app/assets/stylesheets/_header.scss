@@ -8,6 +8,9 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
 
   padding: 15px 0;
+  #logo{
+    width: 170px;
+  }
 }
 
 #search-bar{
@@ -70,7 +73,7 @@
       position: relative;
       img{
         height: 100%;
-        width: auto;
+        width: 100%;
       };
       .down{
         position: absolute;
@@ -78,6 +81,8 @@
         right: 2px;
         color: red;
         font-family: "Comic Sans MS", cursive, sans-serif;
+        background-color: #fff;
+        padding: 3px;
       }
     }
     .top-product{
