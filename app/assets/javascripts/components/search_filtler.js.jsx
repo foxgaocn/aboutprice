@@ -24,15 +24,21 @@ var SearchFilter = React.createClass({
   },
 
   smallFilter: function(filter){
+    expand = <div/>
+    hide = <div/>
+    if(this.state.filterContentClass == 'hidden')
+      expand = <div className='text-center'> <a href="#" id="refinementsToggle" onClick={this.toggleRefinements} className={this.state.filterToggleClass}><span>Show filter</span></a></div>
+    else
+      hide = <div className='text-center'> <a href="#" id="refinementsToggle" onClick={this.toggleRefinements} className={this.state.filterToggleClass}><span>Hide filter</span></a></div>
+    
     return(
       <div className="filter-small">
-        <div className='text-center'>
-          <a href="#" id="refinementsToggle" onClick={this.toggleRefinements} className={this.state.filterToggleClass}><span>{this.state.refinementsText}</span></a>
-        </div>
+        {expand}
         <div className={this.state.filterContentClass}>
           <SearchCategories history={this.props.history} categories={this.props.categories} filter={filter.category_id} onFilterChange={this.props.onFilterChange}/>
           <SearchShops history={this.props.history} shops={this.props.shops} filter={filter.shop_ids} onFilterChange={this.props.onFilterChange}/>
         </div>
+        {hide}
       </div>
       )
   },
