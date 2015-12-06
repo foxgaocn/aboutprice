@@ -38,7 +38,7 @@ Util = {
       case 2:
         if(_.indexOf(values, price) === 0){
           highest = _.max(values)
-          return {code: 4, message: "Down from $" + highest/100 + ", price ok"}
+          return {code: 4, message: "Down from $" + highest/100 + ", not bad"}
         }
         lowest = _.min(values)
         return {code: 2, message: "Was $" + lowest/100 + " previously, maybe wait"}

@@ -50,6 +50,13 @@ var Today = React.createClass({
       return this.genCurrentProduct(product)
 
     down_sign = this.down_sign(product, type)
+
+    msg = Util.priceOk(product.history, product.price)
+    var stars = [];
+    for (var i = 0; i < msg.code; i++) {
+      stars.push(<span className='star glyphicon glyphicon-star'></span>);
+    }
+
     return(
       <div className="top-product" data={product.id}>
         <div className="image">
@@ -60,13 +67,21 @@ var Today = React.createClass({
           <div className="main-title">
             <h4 className='link'>{product.name}</h4>
           </div>
-          <div className="row">
-            <div className="col-sm-6">
-              <span className='price'>${product.price/100.0}</span>
+          <div>
+            <span className='priceok'>Price: </span>
+            <span className='price'>${product.price/100.0}</span>
+            <span className='gray'>&nbsp; (was:</span>
+            <span className='price-was'>${product.price_was/100.0}</span>
+             <span className='gray'>)</span>
+          </div>
+          <div>
+            <div>
+              <span className='priceok'>Rating: </span>
+              {stars}
             </div>
-            <div className="col-sm-6">
-              <span className='gray'>was:</span>
-              <span className='price-was'>${product.price_was/100.0}</span>
+            <div> 
+              <span className='priceok'>Advice: </span> 
+              <span className='advice'> {msg.message} </span>
             </div>
           </div>
           <div className="goto">

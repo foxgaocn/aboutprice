@@ -43,6 +43,12 @@
   margin-right: 5px;
 }
 
+.advice{
+  color: #666;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
 .link{
   color: #428bca;
   &:hover{
@@ -54,7 +60,8 @@
 
 .price{
   color: #EF6C0F;
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: bold;
   font-family: Tahoma, Geneva, sans-serif;
 }
 
@@ -110,9 +117,11 @@
   }
 }
 
-// .product-item{
-//   height: 170px;
-// }
+.chart-title{
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: #d70206;
+  font-size: 15px;
+}
 
 .product-inline{
   border: 1px solid #ccc;

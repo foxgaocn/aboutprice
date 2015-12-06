@@ -5,7 +5,7 @@ var ProductInline = React.createClass({
     msg = Util.priceOk(product.history, product.price)
     var stars = [];
     for (var i = 0; i < msg.code; i++) {
-      stars.push(<span className='star'>☆</span>);
+      stars.push(<span className='star glyphicon glyphicon-star'></span>);
     }
     return(
       <div className="row">
@@ -17,13 +17,19 @@ var ProductInline = React.createClass({
             <h3><a href='#' onClick={this.props.closeInline}>{product.name}</a></h3>
           </div>
           <div>
-            <span className='gray'>from: {product.shop}</span>
+            <span className='price'>${product.price/100}</span>
+            <span className='source'>from: {product.shop}</span>
           </div>
           <div className="row">
             <div className="col-md-4 vcenter">
-              <div className='price'>${product.price/100}</div>
-              <div><span className='priceok'>Price rating:</span>{stars}</div>
-              <div>{msg.message}</div>
+              <div>
+                <span className='priceok'>Rating </span>
+                {stars}
+              </div>
+              <div> 
+                <span className='priceok'>Advice: </span> 
+                <span className='advice'> {msg.message} </span>
+              </div>
             </div>
             <div className="col-md-8 vcenter">
               <Chart data={product.history}/>

@@ -42,7 +42,12 @@ var Chart = React.createClass({
 
   render: function() {
     return (
-      <div className="ct-chart">
+      <div>
+        <div className='text-center chart-title'>
+          Price History
+        </div>
+        <div className="ct-chart">
+        </div>
       </div>
     );
   }
