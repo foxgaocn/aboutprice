@@ -44,6 +44,8 @@ var Today = React.createClass({
   },
 
   genProduct: function(product, type){
+    if(product == null)
+      return <div />
     if(this.state.current_product == product.id)
       return this.genCurrentProduct(product)
 
