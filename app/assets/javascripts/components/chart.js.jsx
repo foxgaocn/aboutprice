@@ -1,6 +1,16 @@
 var Chart = React.createClass({
+
+  componentDidUpdate: function(nextProps) {
+    data = JSON.parse(this.props.data)
+    this.genChart(data)
+  },
+
   componentDidMount: function() {
     data = JSON.parse(this.props.data)
+    this.genChart(data)
+  },
+
+  genChart: function(data){
     chartData = []
     Object.keys(data).forEach(function(k){
       chartData.push({x: Util.stringToHours(k), y: data[k]/100.0})
@@ -13,7 +23,6 @@ var Chart = React.createClass({
       chartData.push({x: today, y: chartData[chartData.length-1].y})
       lastDay = today
     }
-
     new Chartist.Line('.ct-chart', {
       series: [
         { name: 'price',
@@ -39,6 +48,7 @@ var Chart = React.createClass({
       }
     );
   },
+
 
   render: function() {
     return (

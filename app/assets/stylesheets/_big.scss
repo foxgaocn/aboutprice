@@ -7,3 +7,15 @@
     padding-top: 40px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .product-modal{
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .product-modal{
+    width: 420px;
+  }
+}

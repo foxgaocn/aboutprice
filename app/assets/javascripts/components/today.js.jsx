@@ -2,27 +2,8 @@ var Today = React.createClass({
   getInitialState: function() {
     return {
       top2: [],
-      current_product: null
+      current_product_str: ''
     };
-  },
-
-  setCurrent: function(e){
-    this.setState({
-      current_product: parseInt(e.currentTarget.attributes["data"].value)
-    })
-  },
-
-  closeCurrent: function(){
-    this.setState({
-      current_product: null
-    })
-  },
-
-  genCurrentProduct: function(product){
-    return (<div className="product-inline">
-              <div className="cross" onClick={this.closeCurrent}>X</div>
-              <TopProduct product_id={product.id} closeInline={this.closeCurrent} />
-            </div>)
   },
 
   componentDidMount: function(){
@@ -35,6 +16,12 @@ var Today = React.createClass({
     }.bind(this))
   },
 
+  showProduct: function(e){
+    this.setState({current_product_str: e.currentTarget.attributes["data-product"].value})
+    $('#myModal').modal()  
+  },
+
+
   down_sign: function(product, type){
     if(type == 'by_price')
     {
@@ -46,11 +33,8 @@ var Today = React.createClass({
   genProduct: function(product, type){
     if(product == null)
       return <div />
-    if(this.state.current_product == product.id)
-      return this.genCurrentProduct(product)
 
     down_sign = this.down_sign(product, type)
-
     msg = Util.priceOk(product.history, product.price)
     var stars = [];
     for (var i = 0; i < msg.code; i++) {
@@ -58,7 +42,7 @@ var Today = React.createClass({
     }
 
     return(
-      <div className="top-product" data={product.id}>
+      <div className="top-product" data={product.id} data-product={JSON.stringify(product)} onClick={this.showProduct}>
         <div className="image">
           <img src={product.img}/>
           {down_sign}
@@ -99,7 +83,10 @@ var Today = React.createClass({
     return(
     <div className="col-md-4 col-sm-12">
       <div className="panel panel-default top-category">
-        <div className="panel-heading cat-heading">{category.name}</div>
+        <div className="panel-heading cat-heading">
+          <span>{category.name}</span>
+          <span className="pull-right more">More</span>
+        </div>
         <div className="panel-body">
           {this.genProduct(category.products_by_price, 'by_price')}
           {this.genProduct(category.products_by_percent, 'by_percent')}
@@ -120,6 +107,7 @@ var Today = React.createClass({
             {categories}
           </div>
         </div>
+        <ProductModal product_str={this.state.current_product_str}/>
       </div>
       )
   }

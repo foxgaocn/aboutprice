@@ -2,6 +2,14 @@
   color: red;
 }
 
+.more{
+  color: #DDE80E;
+  text-decoration: underline;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
 .filter{
   margin-bottom: 5px;
   h4{
