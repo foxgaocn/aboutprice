@@ -11,7 +11,7 @@ var ProductResults = React.createClass({
   },
 
   genCurrentProduct: function(product){
-    return (<div className="product-inline">
+    return (<div className="product-inline" key={product.id}>
               <div className="cross" onClick={this.closeCurrent}>X</div>
               <ProductInline product={product} closeInline={this.closeCurrent}/>
             </div>)
@@ -21,7 +21,7 @@ var ProductResults = React.createClass({
     msg = Util.priceOk(product.history, product.price)
     var stars = [];
     for (var i = 0; i < msg.code; i++) {
-      stars.push(<span className='star glyphicon glyphicon-star'></span>);
+      stars.push(<span className='star glyphicon glyphicon-star' key={i}></span>);
     }
     return(
       <div key={product.id} data={product.id} className="row product-item" onClick={this.setCurrent}>

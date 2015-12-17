@@ -59,7 +59,7 @@ var ProductModal = React.createClass({
 
   render: function() {
     return (
-      <div className="modal fade" tabindex="-1" id="myModal" role="dialog">
+      <div className="modal fade" tabIndex="-1" id="myModal" role="dialog">
         <div className="modal-dialog product-modal">
           <div className="modal-content">
             <div className="modal-body">

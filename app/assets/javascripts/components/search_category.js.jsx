@@ -11,7 +11,8 @@ var SearchCategories = React.createClass({
     return(
       <div key={category.id} className="row">
         <label className="filter-label">
-          <input type="radio" value={category.id} name='category' onChange={this.categoryChanged} checked={checked}>{category.name}</input>
+          <input type="radio" value={category.id} name='category' onChange={this.categoryChanged} checked={checked}/>
+          {category.name}
         </label>
       </div>)
   },

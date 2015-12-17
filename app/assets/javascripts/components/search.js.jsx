@@ -1,5 +1,6 @@
-var Search = React.createClass({
+var ReactTransitionGroup = React.addons.CSSTransitionGroup
 
+var Search = React.createClass({
   getInitialState: function() {
     return {};
   },
@@ -74,12 +75,9 @@ var Search = React.createClass({
     filter = {category_id: this.props.location.query.cid, shop_ids: this.props.location.query.sid}
     return (
       <div>
-        <SearchBar history={this.props.history} term={this.props.location.query.term}/>
-        <div className='container'>
-          <div className="row">
-            <SearchFilter history={this.props.history} categories={this.state.categories} shops={this.state.shops} filter={filter} onFilterChange={this.setFilter}/>
-            <ProductResults history={this.props.history} products={this.state.products} />
-          </div>
+        <BigHeader history={this.props.history} term={this.props.location.query.term} defaultClass='title-small'/>
+        <div id="search-content">
+          {content}
         </div>
       </div>
     );

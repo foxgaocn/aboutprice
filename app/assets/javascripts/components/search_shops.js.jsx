@@ -27,7 +27,8 @@ var SearchShops = React.createClass({
     return(
       <div key={shop.id} className="row">
         <label className="filter-label">
-          <input type="checkbox" value={shop.id} name='shop' onChange={this.shopChanged} checked={checked}>{shop.name}</input>
+          <input type="checkbox" value={shop.id} name='shop' onChange={this.shopChanged} checked={checked}/>
+          {shop.name}
         </label>
       </div>)
   },

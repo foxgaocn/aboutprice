@@ -38,7 +38,7 @@ var Today = React.createClass({
     msg = Util.priceOk(product.history, product.price)
     var stars = [];
     for (var i = 0; i < msg.code; i++) {
-      stars.push(<span className='star glyphicon glyphicon-star'></span>);
+      stars.push(<span className='star glyphicon glyphicon-star' key={i}></span>);
     }
 
     return(
@@ -81,7 +81,7 @@ var Today = React.createClass({
 
   getCategory: function(category){
     return(
-    <div className="col-md-4 col-sm-12">
+    <div className="col-md-4 col-sm-12" key={category.id}>
       <div className="panel panel-default top-category">
         <div className="panel-heading cat-heading">
           <span>{category.name}</span>
@@ -98,17 +98,15 @@ var Today = React.createClass({
   render: function(){
     var categories = this.state.top2.map(this.getCategory)
     return (
-      <div>
-        <div id="toptitle">
-          <span>Top advice today</span>
-        </div>
         <div className="container">
+          <div id="toptitle"> 
+            <span>Top advice today</span>
+          </div>
           <div className="row">
             {categories}
           </div>
+          <ProductModal product_str={this.state.current_product_str}/>
         </div>
-        <ProductModal product_str={this.state.current_product_str}/>
-      </div>
       )
   }
 })

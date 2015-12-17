@@ -3,7 +3,7 @@
 }
 
 .more{
-  color: #DDE80E;
+  color: #000;
   text-decoration: underline;
   &:hover{
     cursor: pointer;
@@ -151,4 +151,17 @@
       color: #333;
     }
   }
+}
+
+.search-result-appear {
+  opacity: 0.01;
+}
+
+.search-result-appear.search-result-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+#search-content{
+  padding-top: 108px;
 }
