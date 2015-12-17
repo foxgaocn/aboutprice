@@ -73,10 +73,22 @@ var Search = React.createClass({
   
   render: function() {
     filter = {category_id: this.props.location.query.cid, shop_ids: this.props.location.query.sid}
+    var content;
+    if(this.props.location.query.term.length == 0)
+      content = <Today />
+    else
+      content = (
+        <ReactTransitionGroup component="div" transitionName="search-result" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+          <div className="row">
+            <SearchFilter history={this.props.history} categories={this.state.categories} shops={this.state.shops} filter={filter} onFilterChange={this.setFilter}/>
+            <ProductResults history={this.props.history} products={this.state.products} />
+          </div>
+        </ReactTransitionGroup>)
+
     return (
       <div>
         <BigHeader history={this.props.history} term={this.props.location.query.term} defaultClass='title-small'/>
-        <div id="search-content">
+        <div id="search-content" className="container">
           {content}
         </div>
       </div>
