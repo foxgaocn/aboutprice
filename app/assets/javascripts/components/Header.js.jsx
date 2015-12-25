@@ -1,7 +1,7 @@
 var Link = window.ReactRouter.Link;
 var Router = window.ReactRouter.Router;
 
-var BigHeader = React.createClass({
+var Header = React.createClass({
 
   getInitialState: function() {
     return {headerHeight: 235,

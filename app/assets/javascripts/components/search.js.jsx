@@ -87,7 +87,7 @@ var Search = React.createClass({
 
     return (
       <div>
-        <BigHeader history={this.props.history} term={this.props.location.query.term} defaultClass='title-small'/>
+        <Header history={this.props.history} term={this.props.location.query.term} defaultClass='title-small'/>
         <div id="search-content" className="container">
           {content}
         </div>
