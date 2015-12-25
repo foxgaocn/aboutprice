@@ -80,12 +80,20 @@ class Product < ActiveRecord::Base
       current = {id: cat, products_by_price: [], products_by_percent: []}
       tops << current
       Product.where(category_id: cat).find_each(batch_size: 1000) do |product|
-        push_by_price(current, 7, product)
-        push_by_percentage(current, 3, product)
+        push_by_price(current, 10, product)
+        push_by_percentage(current, 10, product)
       end
     end
     Rails.cache.write('top_products', tops)
     tops
+  end
+
+  def self.top(category)
+    result = {products: []}
+    top = top_products.find{|p| p[:id].to_s == category}
+    top[:products_by_price].map{|p| result[:products] << ProductSerializer.new(p).serializable_hash}
+    top[:products_by_percent].map{|p| result[:products] << ProductSerializer.new(p).serializable_hash}
+    result
   end
 
   def self.top2

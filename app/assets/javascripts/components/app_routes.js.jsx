@@ -10,6 +10,7 @@ var AppRoutes = React.createClass({
         <Route path='/' component={App}>
           <IndexRoute component={Home} />
           <Route path='search' component={Search} />
+          <Route path='popular' component={Popular} />
         </Route>
       </Router>
     );

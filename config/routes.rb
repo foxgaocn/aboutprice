@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'search', on: :collection
       get 'top2', on: :collection
       get 'top10', on: :collection
+      get 'top', on: :collection
     end
   end
 

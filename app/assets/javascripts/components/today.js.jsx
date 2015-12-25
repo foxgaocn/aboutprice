@@ -94,7 +94,7 @@ var Today = React.createClass({
       <div className="panel panel-default top-category">
         <div className="panel-heading cat-heading">
           <span>{category.name}</span>
-          <span className="pull-right more">More</span>
+          <span className="pull-right more"><Link to={'/popular?category=' + category.id}>More</Link></span>
         </div>
         <div className="panel-body">
           {product}

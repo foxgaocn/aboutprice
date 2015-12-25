@@ -45,5 +45,10 @@ module Api
     def top2
       render json: Product.top2.to_json
     end
+
+    def top
+      result = Product.top(params[:category])
+      render json: result
+    end
   end
 end

@@ -66,9 +66,9 @@ var ProductResults = React.createClass({
 
   render: function(){
     products = this.props.products
-    if ( categories == null)
+    if ( products == null)
       return (<div/>)
-    if ( categories.length == 0)
+    if ( products.length == 0)
       return <div> Sorry, we cannot find anything match your query </div>
     
     items = []
