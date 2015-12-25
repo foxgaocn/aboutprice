@@ -36,7 +36,7 @@ var Header = React.createClass({
 
   render: function() {
     return (
-      <div id='header-big' style={{height: this.state.headerHeight}}>
+      <div id='header' style={{height: this.state.headerHeight}}>
         <div className='container'>
           <Link to='/' className="no-underline">
             <div className={"title " + this.state.titleClass}>

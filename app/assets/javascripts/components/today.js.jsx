@@ -25,14 +25,14 @@ var Today = React.createClass({
   down_sign: function(product, type){
     if(type == 'by_price')
     {
-      return <div className='down'>{'$' + product.price_drop/100 + ' off'}</div>
+      return <div className='down'><span>{'$' + product.price_drop/100 + ' off'}</span></div>
     }
-    return <div className='down'>{(product.price_drop_percent*100).toFixed(2) + '% off'}</div>
+    return <div className='down'><span>{(product.price_drop_percent*100).toFixed(2) + '% off'}</span></div>
   },
 
   genProduct: function(product, type){
     if(product == null)
-      return <div />
+      return null
 
     down_sign = this.down_sign(product, type)
     msg = Util.priceOk(product.history, product.price)
@@ -79,29 +79,35 @@ var Today = React.createClass({
   },
 
 
-  getCategory: function(category){
+  genCategory: function(category, type){
+    var product;
+    if(type == 'by_price') 
+      product = this.genProduct(category.products_by_price, type)
+    else
+      product = this.genProduct(category.products_by_percent, type)
+    
+    if(product == null)
+      return null
+
     return(
-    <div className="col-md-4 col-sm-12" key={category.id}>
+    <div className="col-md-4 col-sm-12" key={category.id + type}>
       <div className="panel panel-default top-category">
         <div className="panel-heading cat-heading">
           <span>{category.name}</span>
           <span className="pull-right more">More</span>
         </div>
         <div className="panel-body">
-          {this.genProduct(category.products_by_price, 'by_price')}
-          {this.genProduct(category.products_by_percent, 'by_percent')}
+          {product}
         </div>
       </div>
     </div>)
   },
 
   render: function(){
-    var categories = this.state.top2.map(this.getCategory)
+    var categories = [];
+    this.state.top2.forEach( category => { categories.push(this.genCategory(category, 'by_price')); categories.push(this.genCategory(category, 'by_percent'));  } )
     return (
         <div className="container">
-          <div id="toptitle"> 
-            <span>Top advice today</span>
-          </div>
           <div className="row">
             {categories}
           </div>
