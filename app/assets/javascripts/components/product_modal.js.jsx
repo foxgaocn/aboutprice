@@ -48,7 +48,7 @@ var ProductModal = React.createClass({
           <div>
             <Chart data={product.history}/>
           </div>
-          <div>
+          <div className="text-center">
             <a href={product.url} target='blank'>
               <button type="button" className="btn btn-success">Go to shop</button>
             </a>

@@ -35,7 +35,7 @@ var ProductInline = React.createClass({
               <Chart data={product.history}/>
             </div>
           </div>
-          <div>
+          <div className="goto">
             <a href={product.url} target='blank'>
               <button type="button" className="btn btn-success">Go to shop</button>
             </a>
