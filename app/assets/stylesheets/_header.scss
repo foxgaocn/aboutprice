@@ -61,7 +61,14 @@
 }
 
 .image-auto-height{
+  height: 200px;
   text-align: center;
+  overflow: hidden;
+  position: relative;
+  img{
+    height: 100%;
+    width: auto;
+  };
 }
 
 #search-bar{
@@ -104,6 +111,10 @@
   background-color: #2ec4b6 !important; /* Old browsers */
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.today{
+  margin-top: 20px;
 }
 
 .top-category{

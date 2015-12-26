@@ -17,6 +17,8 @@ var Today = React.createClass({
   },
 
   showProduct: function(e){
+    if(e.target.nodeName == "BUTTON")
+      return; //do not show modal if the go to button is clicked
     this.setState({current_product_str: e.currentTarget.attributes["data-product"].value})
     $('#myModal').modal()  
   },
@@ -107,7 +109,7 @@ var Today = React.createClass({
     var categories = [];
     this.state.top2.forEach( category => { categories.push(this.genCategory(category, 'by_price')); categories.push(this.genCategory(category, 'by_percent'));  } )
     return (
-        <div className="container">
+        <div className="container today">
           <div className="row">
             {categories}
           </div>

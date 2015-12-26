@@ -69,7 +69,7 @@ var ProductResults = React.createClass({
     if ( products == null)
       return (<div/>)
     if ( products.length == 0)
-      return <div> Sorry, we cannot find anything match your query </div>
+      return <div> Oops! No results were found </div>
     
     items = []
     products.forEach(function(product){
