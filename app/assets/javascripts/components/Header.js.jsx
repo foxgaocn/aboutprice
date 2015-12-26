@@ -45,7 +45,7 @@ var Header = React.createClass({
                <span className="title3">{'.com.au\u2122'}</span>
             </div>
           </Link>
-          <SearchBar history={this.props.history} term={this.props.term}/>
+          <SearchBar history={this.props.history} term={this.props.term} noFocus={this.props.noFocus}/>
         </div>
       </div>
     );

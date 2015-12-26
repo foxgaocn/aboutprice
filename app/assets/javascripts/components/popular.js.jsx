@@ -34,7 +34,7 @@ var Popular = React.createClass({
 
     return (
       <div>
-        <Header history={this.props.history} defaultClass='title-small'/>
+        <Header history={this.props.history} defaultClass='title-small' noFocus={true}/>
         <div id="search-content" className="container">
           {content}
         </div>

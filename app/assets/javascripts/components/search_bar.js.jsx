@@ -14,6 +14,8 @@ var SearchBar = React.createClass({
   },
 
   componentDidMount: function(){
+    if(this.props.noFocus)
+      return
     this.refs.term.focus(); 
     Util.moveCursorToEnd(this.refs.term)
   },
