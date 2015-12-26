@@ -42,7 +42,8 @@ var Chart = React.createClass({
         },
         series:{
           'price':{
-            lineSmooth: Chartist.Interpolation.step()
+            lineSmooth: Chartist.Interpolation.step(),
+            showPoint: false
           }
         }
       }
