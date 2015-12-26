@@ -85,6 +85,6 @@ set :linked_files, %w{config/database.yml, config/secrets.yml}
 
 
 #if get an "permission denied (publickey error)" run the following
-$ ssh-add -D   #remove existing identities
-$ ssh-agent    #copy the lines & run them
-$ ssh-add      #uses the output from above
+ssh-add -D  
+ssh-agent  
+ssh-add   
