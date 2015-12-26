@@ -5,7 +5,7 @@ var Home = React.createClass({
   render: function() {
     return (
       <div>
-        <Header history={this.props.history} defaultClass='title-big'/>
+        <Header history={this.props.history} defaultClass='title-big' noFocus={true}/>
         <div id="content">
           <Today />
         </div>
