@@ -12,6 +12,12 @@ var SearchFilter = React.createClass({
     window.addEventListener("resize", this.updateDimensions);
   },
 
+  
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this.updateDimensions);
+  },
+
+
   updateDimensions: function() {
     this.setState({width: $(window).width()});
   },

@@ -10,8 +10,13 @@
 
 @media screen and (max-width: 768px) {
   .product-modal{
-    width: 90%;
+    width: 100%;
+    margin: 0px;
   };
+
+  .product-inline{
+    width: 100%;
+  }
 
   #content{
     padding-top: 240px;

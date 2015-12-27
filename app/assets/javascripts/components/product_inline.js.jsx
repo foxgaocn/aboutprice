@@ -23,7 +23,7 @@ var ProductInline = React.createClass({
           <div className="row">
             <div className="col-md-4 vcenter">
               <div>
-                <span className='priceok'>Rating </span>
+                <span className='priceok'>Rating: </span>
                 {stars}
               </div>
               <div> 

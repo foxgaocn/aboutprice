@@ -1,7 +1,22 @@
 var ProductResults = React.createClass({
 
   getInitialState: function() {
-    return {current_product: null};
+    return {width: $(window).width(),
+            current_product: null};
+  },
+
+  componentDidMount: function() {
+    window.addEventListener("resize", this.updateDimensions);
+  },
+
+  
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this.updateDimensions);
+  },
+
+
+  updateDimensions: function() {
+    this.setState({width: $(window).width()});
   },
   
   genProduct: function(product){
@@ -11,7 +26,7 @@ var ProductResults = React.createClass({
   },
 
   genCurrentProduct: function(product){
-    return (<div className="product-inline" key={product.id}>
+    return (<div className="product-inline row" key={product.id}>
               <div className="cross" onClick={this.closeCurrent}>X</div>
               <ProductInline product={product} closeInline={this.closeCurrent}/>
             </div>)
@@ -41,7 +56,7 @@ var ProductResults = React.createClass({
         </div>
         <div className="col-md-3 product-price">
           <div>
-            <span className='priceok'> Rating </span>
+            <span className='priceok'> Rating: </span>
             {stars}
           </div>
           <div> 
