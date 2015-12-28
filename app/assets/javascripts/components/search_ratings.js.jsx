@@ -1,10 +1,16 @@
 var SearchRatings = React.createClass({
-  getInitialState: function() {
+  componentDidMount: function() {
     if(this.props.filter == null)
       this.filter = []
     else
       this.filter = this.props.filter.split(",")
-    return {};
+  },
+
+  componentWillReceiveProps: function(nextProps, nextState) {
+    if(nextProps.filter == null)
+      this.filter = []
+    else
+      this.filter = nextProps.filter.split(",")
   },
 
   ratingChanged: function(e)
