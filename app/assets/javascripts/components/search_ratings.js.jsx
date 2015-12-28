@@ -32,7 +32,7 @@ var SearchRatings = React.createClass({
     checked = this.filter.indexOf(rating.toString()) > -1
     var stars = [];
     for (var i = 0; i < rating; i++) {
-      stars.push(<span className='star glyphicon glyphicon-star'></span>);
+      stars.push(<span className='star glyphicon glyphicon-star' key={i}></span>);
     }
     return(
       <div key={i} className="row">
@@ -46,7 +46,7 @@ var SearchRatings = React.createClass({
   render: function(){
     if(this.filter == null)
       return null
-    
+
     if(this.props.product_count == 0 && this.props.filter == null)
       return <div />
     items = [];

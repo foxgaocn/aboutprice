@@ -20,7 +20,7 @@ var ProductModal = React.createClass({
     var msg = Util.priceOk(product.history, product.price)
     var stars = [];
     for (var i = 0; i < msg.code; i++) {
-      stars.push(<span className='star glyphicon glyphicon-star'></span>);
+      stars.push(<span className='star glyphicon glyphicon-star' key={i}></span>);
     }
     return(
       <div className="top-product">

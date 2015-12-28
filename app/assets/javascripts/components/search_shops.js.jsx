@@ -40,6 +40,9 @@ var SearchShops = React.createClass({
   },
 
   render: function(){
+    if(this.filter == null)
+      return null
+    
     shops = this.props.shops
     if ( shops == null || shops.length == 0)
       return (<div/>)
