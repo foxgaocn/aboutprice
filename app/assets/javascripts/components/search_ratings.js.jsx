@@ -44,6 +44,9 @@ var SearchRatings = React.createClass({
   },
 
   render: function(){
+    if(this.filter == null)
+      return null
+    
     if(this.props.product_count == 0 && this.props.filter == null)
       return <div />
     items = [];

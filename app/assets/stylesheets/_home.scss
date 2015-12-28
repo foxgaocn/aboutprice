@@ -82,6 +82,13 @@
   margin-left: 8px;
 }
 
+.product{
+  -webkit-transition: all 1s linear;
+  -moz-transition: all 1s linear;
+  -o-transition: all 1s linear;
+  transition: all 1s linear;
+}
+
 .product-item{
   border-bottom: 1px solid #ddd;
   margin-bottom: 8px;
@@ -170,4 +177,11 @@
   border-top: 1px solid #ddd;
   padding-top: 10px;
   text-align: center;
+}
+
+.no-result{
+  text-align: center;
+  padding-top: 30px;
+  font-size: 22px;
+  font-family: "Arial, Helvetica, sans-serif"
 }

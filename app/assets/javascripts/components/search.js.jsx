@@ -81,7 +81,7 @@ var Search = React.createClass({
     var content;
     if(this.props.location.query.term.length == 0)
       content = <Today />
-    else
+    else{
       if(this.state.products == null)
         product_count = 0;
       else
@@ -93,7 +93,7 @@ var Search = React.createClass({
             <ProductResults history={this.props.history} products={this.state.products} />
           </div>
         </ReactTransitionGroup>)
-
+    }
     return (
       <div>
         <Header history={this.props.history} term={this.props.location.query.term} defaultClass='title-small'/>

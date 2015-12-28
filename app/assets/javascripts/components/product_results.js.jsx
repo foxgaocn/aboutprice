@@ -26,7 +26,7 @@ var ProductResults = React.createClass({
   },
 
   genCurrentProduct: function(product){
-    return (<div className="product-inline row" key={product.id}>
+    return (<div className="product-inline product row" key={product.id}>
               <div className="col-xs-12">
                 <div className="cross" onClick={this.closeCurrent}>X</div>
                 <ProductInline product={product} closeInline={this.closeCurrent}/>
@@ -41,7 +41,7 @@ var ProductResults = React.createClass({
       stars.push(<span className='star glyphicon glyphicon-star' key={i}></span>);
     }
     return(
-      <div key={product.id} data={product.id} className="row product-item" onClick={this.setCurrent}>
+      <div key={product.id} data={product.id} className="row product-item product" onClick={this.setCurrent}>
         <div className="col-md-3">
           <div className="product-image">
             <img src={product.img}/>
@@ -86,7 +86,7 @@ var ProductResults = React.createClass({
     if ( products == null)
       return (<div/>)
     if ( products.length == 0)
-      return <div> Oops! No results were found </div>
+      return <div className='no-result'> Oops! No results were found </div>
     
     items = []
     products.forEach(function(product){

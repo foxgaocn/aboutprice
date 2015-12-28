@@ -41,7 +41,7 @@ var SearchShops = React.createClass({
 
   render: function(){
     shops = this.props.shops
-    if ( shops == null || shops.length == 1)
+    if ( shops == null || shops.length == 0)
       return (<div/>)
     
     items = []

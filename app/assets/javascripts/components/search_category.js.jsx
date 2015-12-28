@@ -19,7 +19,7 @@ var SearchCategories = React.createClass({
 
   render: function(){
     categories = this.props.categories
-    if ( categories == null || categories.length == 1)
+    if ( categories == null || categories.length == 0)
       return (<div/>)
     
     items = []

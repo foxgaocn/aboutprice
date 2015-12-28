@@ -14,7 +14,7 @@ var ProductInline = React.createClass({
         </div>
         <div className="col-md-8">
           <div>
-            <h3><a href='#' onClick={this.props.closeInline}>{product.name}</a></h3>
+            <h3><a href={product.url} target="_blank">{product.name}</a></h3>
           </div>
           <div>
             <span className='price'>${product.price/100}</span>

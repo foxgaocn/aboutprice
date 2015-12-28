@@ -62,6 +62,10 @@ var Today = React.createClass({
           </div>
           <div>
             <div>
+              <span className='priceok'>From: </span>
+              <span className='advice'> {product.shop} </span>
+            </div>
+            <div>
               <span className='priceok'>Rating: </span>
               {stars}
             </div>
