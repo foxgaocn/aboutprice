@@ -27,8 +27,10 @@ var ProductResults = React.createClass({
 
   genCurrentProduct: function(product){
     return (<div className="product-inline row" key={product.id}>
-              <div className="cross" onClick={this.closeCurrent}>X</div>
-              <ProductInline product={product} closeInline={this.closeCurrent}/>
+              <div className="col-xs-12">
+                <div className="cross" onClick={this.closeCurrent}>X</div>
+                <ProductInline product={product} closeInline={this.closeCurrent}/>
+              </div>
             </div>)
   },
 
@@ -91,8 +93,11 @@ var ProductResults = React.createClass({
       items.push(this.genProduct(product))
     }.bind(this))
 
+    var contentClass = "container"
+    if(this.state.width > 992)
+      contentClass = "col-md-10"
     return(
-      <div className="col-md-10">
+      <div className={contentClass}>
         {items}
       </div>
     )
