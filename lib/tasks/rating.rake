@@ -8,11 +8,12 @@ end
 def rating(history)
   return 3 if history == nil
   return 3 if history.length == 0
+  
+  current = history.values.last
 
   values = history.values.uniq
   return 3 if values.length == 1
 
-  current = values.last
   values = values.sort
   
   if values.length == 2

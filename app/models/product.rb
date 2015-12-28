@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
   end
 
 
-  def self.query(term, cid, sid, page)
+  def self.query(term, cid, sid, rating, page)
     current_page = page || 1
     result = {categories: [], shops: [], products: []}
     
@@ -63,6 +63,7 @@ class Product < ActiveRecord::Base
     prod_condition = {page: current_page, :star => true, with: {}}
     prod_condition[:with].merge!({:category_id => cid.to_i}) unless cid.empty?
     prod_condition[:with].merge!({:shop_id => sid.split(',').map{|id| id.to_i}}) unless sid.empty?
+    prod_condition[:with].merge!({:rating => rating.split(',').map{|id| id.to_i}}) unless rating.empty?
     products = Product.search term, prod_condition
     products.each do |product|
       result[:products] << ProductSerializer.new(product).serializable_hash

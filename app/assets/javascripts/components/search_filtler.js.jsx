@@ -12,7 +12,7 @@ var SearchFilter = React.createClass({
     window.addEventListener("resize", this.updateDimensions);
   },
 
-  
+
   componentWillUnmount: function() {
     window.removeEventListener('resize', this.updateDimensions);
   },
@@ -43,6 +43,7 @@ var SearchFilter = React.createClass({
         <div className={this.state.filterContentClass}>
           <SearchCategories history={this.props.history} categories={this.props.categories} filter={filter.category_id} onFilterChange={this.props.onFilterChange}/>
           <SearchShops history={this.props.history} shops={this.props.shops} filter={filter.shop_ids} onFilterChange={this.props.onFilterChange}/>
+          <SearchRatings history={this.props.history} filter={filter.rating} onFilterChange={this.props.onFilterChange}/>
         </div>
         {hide}
       </div>
@@ -54,6 +55,7 @@ var SearchFilter = React.createClass({
       <div className="col-md-2 filter">
         <SearchCategories history={this.props.history} categories={this.props.categories} filter={filter.category_id} onFilterChange={this.props.onFilterChange}/>
         <SearchShops history={this.props.history} shops={this.props.shops} filter={filter.shop_ids} onFilterChange={this.props.onFilterChange}/>
+        <SearchRatings history={this.props.history} filter={filter.rating} onFilterChange={this.props.onFilterChange} product_count={this.props.product_count}/>
       </div>
       )
   },
@@ -65,9 +67,9 @@ var SearchFilter = React.createClass({
     if(filter == null)
       filter = {}
 
-    if ( (categories == null || categories.length == 1) && 
-         (shops == null || shops.length == 1) )
-      return (<div/>)
+    // if ( (categories == null || categories.length == 1) && 
+    //      (shops == null || shops.length == 1) )
+    //   return (<div/>)
     if(this.state.width > 992)
       return this.bigFilter(filter)
     else

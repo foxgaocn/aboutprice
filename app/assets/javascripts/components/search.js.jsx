@@ -2,24 +2,28 @@ var ReactTransitionGroup = React.addons.CSSTransitionGroup
 
 var Search = React.createClass({
   getInitialState: function() {
-    return {};
+    return {products: []};
   },
 
   setFilter: function(newObj){
-    obj = {cid: this.props.location.query.cid, sid: this.props.location.query.sid}
+    query = this.props.location.query
+    obj = {cid: query.cid, sid: query.sid, rating: query.rating}
     obj[newObj.key] = newObj.value
-    this.props.history.pushState(null, '/search', {term: this.props.location.query.term, cid: obj.cid, sid: obj.sid})
+    this.props.history.pushState(null, '/search', {term: query.term, cid: obj.cid, sid: obj.sid, rating: obj.rating})
   },
 
   search: function(props, merge) {
     url = "api/products/search?term=" + props.location.query.term
     cid = props.location.query.cid
     sid = props.location.query.sid
+    rating = props.location.query.rating
     page = props.location.query.page
     if(cid != null)
       url += "&cid=" + cid
     if(sid != null)
       url += "&sid=" + sid
+    if(rating != null)
+      url += "&rating=" + rating
     if(page && page > 1){
       url += "&p=" + page
     }
@@ -61,7 +65,8 @@ var Search = React.createClass({
     termChanged = this.props.location.query.term != nextProps.location.query.term
     cidChanged = this.props.location.query.cid != nextProps.location.query.cid
     sidChanged = this.props.location.query.sid != nextProps.location.query.sid
-    if(termChanged || cidChanged || sidChanged)
+    ratingChanged = this.props.location.query.rating != nextProps.location.query.rating
+    if(termChanged || cidChanged || sidChanged || ratingChanged)
       this.search(nextProps);
   },
 
@@ -72,15 +77,19 @@ var Search = React.createClass({
   },
   
   render: function() {
-    filter = {category_id: this.props.location.query.cid, shop_ids: this.props.location.query.sid}
+    filter = {category_id: this.props.location.query.cid, shop_ids: this.props.location.query.sid, rating: this.props.location.query.rating}
     var content;
     if(this.props.location.query.term.length == 0)
       content = <Today />
     else
+      if(this.state.products == null)
+        product_count = 0;
+      else
+        product_count = this.state.products.length
       content = (
         <ReactTransitionGroup component="div" transitionName="search-result" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
           <div className="row">
-            <SearchFilter history={this.props.history} categories={this.state.categories} shops={this.state.shops} filter={filter} onFilterChange={this.setFilter}/>
+            <SearchFilter history={this.props.history} categories={this.state.categories} shops={this.state.shops} filter={filter} product_count={product_count} onFilterChange={this.setFilter}/>
             <ProductResults history={this.props.history} products={this.state.products} />
           </div>
         </ReactTransitionGroup>)

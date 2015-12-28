@@ -31,6 +31,7 @@ module Api
       query = Riddle::Query.escape(params[:term].to_s)
       cid = Riddle::Query.escape params[:cid].to_s
       sid = Riddle::Query.escape params[:sid].to_s
+      rating = Riddle::Query.escape params[:rating].to_s
       page = Riddle::Query.escape params[:p].to_s
 
       if query.empty?
@@ -38,7 +39,7 @@ module Api
         return
       end
 
-      result = Product.query(query, cid, sid, page)
+      result = Product.query(query, cid, sid, rating, page)
       render json: result
     end
 
