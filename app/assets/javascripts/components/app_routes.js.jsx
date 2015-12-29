@@ -8,7 +8,7 @@ var AppRoutes = React.createClass({
     return (
       <Router history={createHistory()}>
         <Route path='/' component={App}>
-          <IndexRoute component={Home} />
+          <IndexRoute component={Search} />
           <Route path='search' component={Search} />
           <Route path='popular' component={Popular} />
         </Route>

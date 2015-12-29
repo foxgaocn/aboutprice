@@ -2,12 +2,11 @@ var Link = window.ReactRouter.Link;
 var Router = window.ReactRouter.Router;
 
 var Header = React.createClass({
-
   getInitialState: function() {
-    return {headerHeight: 235,
-            titleClass: this.props.defaultClass};
+    return {
+      titleClass: this.props.defaultClass,
+      headerHeight: this.props.defaultClass=="title-big"? 235 : 100};
   },
-
   handleScroll: function(e) {
     var scroll = document.body.scrollTop
     var titleClass = 'title-big'
@@ -20,14 +19,30 @@ var Header = React.createClass({
     this.setState({headerHeight: newHeight, titleClass: titleClass});
   },
 
-  componentDidMount: function() {
-    var parser = document.createElement('a');
-    parser.href = document.URL;
-    if(parser.pathname == '/')
+  componentWillReceiveProps: function(nextProps, nextState) {
+    if(nextProps.defaultClass == 'title-big')
+    {
       window.addEventListener('scroll', this.handleScroll);
-    else
+      this.setState({titleClass: 'title-big', headerHeight: 235})
+    }
+    else{
+      window.removeEventListener('scroll', this.handleScroll);
       this.setState({titleClass: 'title-small', headerHeight: 100})
+    }
   },
+
+  // componentDidMount: function() {
+  //   //var parser = document.createElement('a');
+  //   //parser.href = document.URL;
+  //   if(this.props.defaultClass == 'title-big')
+  //   {
+  //     window.addEventListener('scroll', this.handleScroll);
+  //     this.setState({titleClass: 'title-big', headerHeight: 235})
+  //   }
+  //   else{
+  //     this.setState({titleClass: 'title-small', headerHeight: 100})
+  //   }
+  // },
 
   componentWillUnmount: function() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -35,6 +50,8 @@ var Header = React.createClass({
 
 
   render: function() {
+    if(this.state.headerHeight == null)
+      return null
     return (
       <div id='header' style={{height: this.state.headerHeight}}>
         <div className='container'>

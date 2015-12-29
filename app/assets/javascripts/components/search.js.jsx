@@ -78,28 +78,30 @@ var Search = React.createClass({
   
   render: function() {
     filter = {category_id: this.props.location.query.cid, shop_ids: this.props.location.query.sid, rating: this.props.location.query.rating}
+    var headerClass='title-big'
     var content;
-    if(this.props.location.query.term.length == 0)
-      content = <Today />
+    if(this.props.location.query.term == null || this.props.location.query.term.length == 0)
+      content = <div id="content"> <Today /> </div>
     else{
+      headerClass = 'title-small'
       if(this.state.products == null)
         product_count = 0;
       else
         product_count = this.state.products.length
       content = (
-        <ReactTransitionGroup component="div" transitionName="search-result" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-          <div className="row">
-            <SearchFilter history={this.props.history} categories={this.state.categories} shops={this.state.shops} filter={filter} product_count={product_count} onFilterChange={this.setFilter}/>
-            <ProductResults history={this.props.history} products={this.state.products} />
-          </div>
-        </ReactTransitionGroup>)
+        <div id="search-content" className="container">
+          <ReactTransitionGroup component="div" transitionName="search-result" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+            <div className="row">
+              <SearchFilter history={this.props.history} categories={this.state.categories} shops={this.state.shops} filter={filter} product_count={product_count} onFilterChange={this.setFilter}/>
+              <ProductResults history={this.props.history} products={this.state.products} />
+            </div>
+          </ReactTransitionGroup>
+        </div>)
     }
     return (
       <div>
-        <Header history={this.props.history} term={this.props.location.query.term} defaultClass='title-small'/>
-        <div id="search-content" className="container">
-          {content}
-        </div>
+        <Header history={this.props.history} term={this.props.location.query.term} defaultClass={headerClass}/>
+        {content}
       </div>
     );
   }
