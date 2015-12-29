@@ -18,7 +18,8 @@ var SearchBar = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps, nextState) {
-    this.refs.term.value = nextProps.term == null ? '' : nextProps.term
+    if(nextProps.term == null)
+      this.refs.term.value = ''
   },
  
 
