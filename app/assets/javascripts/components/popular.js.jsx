@@ -1,16 +1,10 @@
 var Popular = React.createClass({
   getInitialState: function() {
-    return {};
+    return {products: null}
   },
 
-  setFilter: function(newObj){
-    obj = {cid: this.props.location.query.cid, sid: this.props.location.query.sid}
-    obj[newObj.key] = newObj.value
-    this.props.history.pushState(null, '/search', {term: this.props.location.query.term, cid: obj.cid, sid: obj.sid})
-  },
-
-  search: function(props) {
-    url = "api/products/top?category=" + props.location.query.category
+  search: function(category) {
+    url = "api/products/top?category=" + category
     
     $.get(url, function(result) {
       if (this.isMounted()) {
@@ -23,7 +17,7 @@ var Popular = React.createClass({
   },
 
   componentDidMount: function() {
-    this.search(this.props);
+    this.search(this.props.category);
   },
   
   render: function() {
@@ -33,11 +27,8 @@ var Popular = React.createClass({
         </ReactTransitionGroup>)
 
     return (
-      <div>
-        <Header history={this.props.history} defaultClass='title-small' noFocus={true}/>
-        <div id="search-content" className="container">
-          {content}
-        </div>
+      <div id="search-content" className="container">
+        {content}
       </div>
     );
   }

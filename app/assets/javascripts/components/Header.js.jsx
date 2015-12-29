@@ -31,19 +31,6 @@ var Header = React.createClass({
     }
   },
 
-  // componentDidMount: function() {
-  //   //var parser = document.createElement('a');
-  //   //parser.href = document.URL;
-  //   if(this.props.defaultClass == 'title-big')
-  //   {
-  //     window.addEventListener('scroll', this.handleScroll);
-  //     this.setState({titleClass: 'title-big', headerHeight: 235})
-  //   }
-  //   else{
-  //     this.setState({titleClass: 'title-small', headerHeight: 100})
-  //   }
-  // },
-
   componentWillUnmount: function() {
     window.removeEventListener('scroll', this.handleScroll);
   },

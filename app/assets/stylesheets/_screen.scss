@@ -14,12 +14,11 @@
     margin: 0px;
   };
 
-  #content{
+  .today{
     padding-top: 240px;
-    .container{
-      padding-left: 0px;
-      padding-right: 0px;
-    }
+    padding-left: 0px;
+    padding-right: 0px;
+    
   }
 
 
@@ -29,7 +28,7 @@
   .product-modal{
     width: 420px;
   }
-  #content{
+  .today{
     padding-top: 240px;
   }
 }

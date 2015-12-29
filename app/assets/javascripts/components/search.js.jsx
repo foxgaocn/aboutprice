@@ -75,20 +75,17 @@ var Search = React.createClass({
     var throttled = _.throttle(this.getMore, 100);
     $(window).scroll(throttled);
   },
-  
-  render: function() {
-    filter = {category_id: this.props.location.query.cid, shop_ids: this.props.location.query.sid, rating: this.props.location.query.rating}
-    var headerClass='title-big'
-    var content;
+
+  getContent: function(){
+    if(this.props.location.query.category != null)
+      return <Popular category={this.props.location.query.category} />
+
     if(this.props.location.query.term == null || this.props.location.query.term.length == 0)
-      content = <div id="content"> <Today /> </div>
-    else{
-      headerClass = 'title-small'
-      if(this.state.products == null)
-        product_count = 0;
-      else
-        product_count = this.state.products.length
-      content = (
+      return <Today />
+    
+    filter = {category_id: this.props.location.query.cid, shop_ids: this.props.location.query.sid, rating: this.props.location.query.rating}
+    product_count = this.state.products == null ? 0 : this.state.products.length
+    return  (
         <div id="search-content" className="container">
           <ReactTransitionGroup component="div" transitionName="search-result" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
             <div className="row">
@@ -97,7 +94,14 @@ var Search = React.createClass({
             </div>
           </ReactTransitionGroup>
         </div>)
-    }
+  },
+  
+  render: function() {
+    var content = this.getContent()
+    var headerClass='title-small'
+    var query = this.props.location.query
+    if(query.category== null && (query.term == null || query.term.length == 0))
+      headerClass = 'title-big'
     return (
       <div>
         <Header history={this.props.history} term={this.props.location.query.term} defaultClass={headerClass}/>

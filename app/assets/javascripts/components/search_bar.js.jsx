@@ -10,15 +10,9 @@ var SearchBar = React.createClass({
   },
 
   termChange: function(event){
-    _.throttle(this.performSearch, 300)()
+    _.debounce(this.performSearch, 1000)()
   },
 
-  componentDidMount: function(){
-    if(this.props.noFocus)
-      return
-    this.refs.term.focus(); 
-    Util.moveCursorToEnd(this.refs.term)
-  },
 
   render: function() {
     return (
