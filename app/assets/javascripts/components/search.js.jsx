@@ -98,10 +98,10 @@ var Search = React.createClass({
   
   render: function() {
     var content = this.getContent()
-    var headerClass='title-small'
+    var headerClass='header-small'
     var query = this.props.location.query
     if(query.category== null && (query.term == null || query.term.length == 0))
-      headerClass = 'title-big'
+      headerClass = 'header-big'
     return (
       <div>
         <Header history={this.props.history} term={this.props.location.query.term} defaultClass={headerClass}/>

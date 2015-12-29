@@ -5,13 +5,13 @@ var Header = React.createClass({
   getInitialState: function() {
     return {
       titleClass: this.props.defaultClass,
-      headerHeight: this.props.defaultClass=="title-big"? 235 : 100};
+      headerHeight: this.props.defaultClass=="header-big"? 235 : 100};
   },
   handleScroll: function(e) {
     var scroll = document.body.scrollTop
-    var titleClass = 'title-big'
+    var titleClass = 'header-big'
     if(scroll > 10){
-      titleClass = 'title-small'
+      titleClass = 'header-small'
     }
     var newHeight = 235 - document.body.scrollTop
     if(newHeight < 100)
@@ -20,14 +20,14 @@ var Header = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps, nextState) {
-    if(nextProps.defaultClass == 'title-big')
+    if(nextProps.defaultClass == 'header-big')
     {
       window.addEventListener('scroll', this.handleScroll);
-      this.setState({titleClass: 'title-big', headerHeight: 235})
+      this.setState({titleClass: 'header-big', headerHeight: 235})
     }
     else{
       window.removeEventListener('scroll', this.handleScroll);
-      this.setState({titleClass: 'title-small', headerHeight: 100})
+      this.setState({titleClass: 'header-small', headerHeight: 100})
     }
   },
 
