@@ -2,11 +2,6 @@ var ProductInline = React.createClass({
   render: function(){
     product = this.props.product
 
-    msg = Util.priceOk(product.history, product.price)
-    var stars = [];
-    for (var i = 0; i < msg.code; i++) {
-      stars.push(<span className='star glyphicon glyphicon-star' key={i}></span>);
-    }
     return(
       <div className="row">
         <div className="col-md-3 product-image">
@@ -26,12 +21,8 @@ var ProductInline = React.createClass({
                 <span className='advice'> {product.shop} </span>
               </div>
               <div>
-                <span className='priceok'>Rating: </span>
-                {stars}
-              </div>
-              <div> 
-                <span className='priceok'>Advice: </span> 
-                <span className='advice'> {msg.message} </span>
+                <span className='priceok'>Price: </span>
+                <span className='advice'> {Util.priceIndicator(product.rating)} </span>
               </div>
             </div>
             <div className="col-md-8 vcenter">

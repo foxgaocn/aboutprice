@@ -17,11 +17,6 @@ var ProductModal = React.createClass({
 
     var product = JSON.parse(this.props.product_str)
 
-    var msg = Util.priceOk(product.history, product.price)
-    var stars = [];
-    for (var i = 0; i < msg.code; i++) {
-      stars.push(<span className='star glyphicon glyphicon-star' key={i}></span>);
-    }
     return(
       <div className="top-product">
         <div className="image-auto-height">
@@ -41,12 +36,8 @@ var ProductModal = React.createClass({
               <span className='advice'> {product.shop} </span>
             </div>
             <div>
-              <span className='priceok'>Rating: </span>
-              {stars}
-            </div>
-            <div> 
-              <span className='priceok'>Advice: </span> 
-              <span className='advice'> {msg.message} </span>
+              <span className='priceok'>Price: </span>
+              <span className='advice'> {Util.priceIndicator(product.rating)} </span>
             </div>
           </div>
           <div>

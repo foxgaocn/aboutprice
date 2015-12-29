@@ -35,11 +35,6 @@ var ProductResults = React.createClass({
   },
 
   genNormalProduct: function(product){
-    msg = Util.priceOk(product.history, product.price)
-    var stars = [];
-    for (var i = 0; i < msg.code; i++) {
-      stars.push(<span className='star glyphicon glyphicon-star' key={i}></span>);
-    }
     return(
       <div key={product.id} data={product.id} className="row product-item product" onClick={this.setCurrent}>
         <div className="col-md-3">
@@ -58,12 +53,8 @@ var ProductResults = React.createClass({
         </div>
         <div className="col-md-3 product-price">
           <div>
-            <span className='priceok'> Rating: </span>
-            {stars}
-          </div>
-          <div> 
-            <span className='priceok'>Advice: </span> 
-            <span className='advice'> {msg.message} </span>
+            <span className='priceok'>Price: </span>
+            <span className='advice'> {Util.priceIndicator(product.rating)} </span>
           </div>
         </div>
       </div>)

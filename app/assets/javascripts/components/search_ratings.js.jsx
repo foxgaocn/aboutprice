@@ -30,15 +30,12 @@ var SearchRatings = React.createClass({
 
   genRating: function(rating){
     checked = this.filter.indexOf(rating.toString()) > -1
-    var stars = [];
-    for (var i = 0; i < rating; i++) {
-      stars.push(<span className='star glyphicon glyphicon-star' key={i}></span>);
-    }
+    
     return(
-      <div key={i} className="row">
+      <div key={rating} className="row">
         <label className="filter-label">
-          <input type="checkbox" value={i} name='rating' onChange={this.ratingChanged} checked={checked}/>
-          {stars}
+          <input type="checkbox" value={rating} name='rating' onChange={this.ratingChanged} checked={checked}/>
+          {<span>{Util.priceIndicatorShort(rating)}</span>}
         </label>
       </div>)
   },
@@ -56,7 +53,7 @@ var SearchRatings = React.createClass({
 
     return(
       <div className="row">
-        <h4>Rating</h4>
+        <h4>Price</h4>
         {items} 
       </div>
     )

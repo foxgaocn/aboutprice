@@ -25,6 +25,28 @@ Util = {
     }
   },
 
+  priceIndicator: function(rating){
+    switch(rating){
+      case 1: return "Highest ever";
+      case 2: return "Higher than normal";
+      case 3: return "Normal";
+      case 4: return "Lower than normal";
+      case 5: return "Lowest ever";
+      default: return "";
+    }
+  },
+
+  priceIndicatorShort: function(rating){
+    switch(rating){
+      case 1: return "Highest";
+      case 2: return "Higher";
+      case 3: return "Normal";
+      case 4: return "Lower";
+      case 5: return "Lowest";
+      default: return "";
+    }
+  },
+
   priceOk: function(history, price){
     data = JSON.parse(history)
     keys = Object.keys(data)
