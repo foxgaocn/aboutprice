@@ -13,6 +13,14 @@ var SearchBar = React.createClass({
     _.debounce(this.performSearch, 1000)()
   },
 
+  componentDidMount: function(){
+    this.refs.term.value = this.props.term == null ? '' : this.props.term
+  },
+
+  componentWillReceiveProps: function(nextProps, nextState) {
+    this.refs.term.value = nextProps.term == null ? '' : nextProps.term
+  },
+ 
 
   render: function() {
     return (
