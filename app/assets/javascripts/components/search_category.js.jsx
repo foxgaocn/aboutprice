@@ -18,9 +18,6 @@ var SearchCategories = React.createClass({
   },
 
   render: function(){
-    if(this.filter == null)
-      return null
-    
     categories = this.props.categories
     if ( categories == null || categories.length == 0)
       return (<div/>)
