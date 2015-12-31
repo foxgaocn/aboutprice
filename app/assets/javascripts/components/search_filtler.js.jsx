@@ -33,9 +33,9 @@ var SearchFilter = React.createClass({
     expand = <div/>
     hide = <div/>
     if(this.state.filterContentClass == 'hidden')
-      expand = <div className='text-center'> <a href="#" id="refinementsToggle" onClick={this.toggleRefinements} className={this.state.filterToggleClass}><span>Show filter</span></a></div>
+      expand = <div className='text-center'> <a href="#" id="refinementsToggle" onClick={this.toggleRefinements} className={this.state.filterToggleClass}><span>Show filter <i className="fa fa-angle-double-down"></i></span></a></div>
     else
-      hide = <div className='text-center'> <a href="#" id="refinementsToggle" onClick={this.toggleRefinements} className={this.state.filterToggleClass}><span>Hide filter</span></a></div>
+      hide = <div className='text-center'> <a href="#" id="refinementsToggle" onClick={this.toggleRefinements} className={this.state.filterToggleClass}><span>Hide filter <i className="fa fa-angle-double-up"></i></span></a></div>
     
     return(
       <div className="filter-small">

@@ -32,6 +32,14 @@ var Today = React.createClass({
     return <div className='down'><span>{(product.price_drop_percent*100).toFixed(2) + '% off'}</span></div>
   },
 
+  genStar: function(count){
+    var stars = []
+    for(i=0; i<count; i++){
+      stars.push(<i className='fa fa-star star' key={i}/>)
+    }
+    return stars;
+  },
+
   genProduct: function(product, type){
     if(product == null)
       return null
@@ -60,8 +68,9 @@ var Today = React.createClass({
               <span className='advice'> {product.shop} </span>
             </div>
             <div>
-              <span className='priceok'>Price: </span>
-              <span className='advice'> {Util.priceIndicator(product.rating)} </span>
+              <span className='priceok'>Price advice: </span>
+              <span> {this.genStar(product.rating)} </span>
+              <span className='advice'> ({Util.priceIndicator(product.rating)}) </span>
             </div>
           </div>
           <div className="goto">
@@ -90,7 +99,7 @@ var Today = React.createClass({
       <div className="panel panel-default top-category">
         <div className="panel-heading cat-heading">
           <span>{category.name}</span>
-          <span className="pull-right more"><Link to={'/popular?category=' + category.id}>More</Link></span>
+          <span className="pull-right"><Link to={'/popular?category=' + category.id} className="more">More</Link></span>
         </div>
         <div className="panel-body">
           {product}

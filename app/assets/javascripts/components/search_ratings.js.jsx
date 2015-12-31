@@ -53,7 +53,7 @@ var SearchRatings = React.createClass({
 
     return(
       <div className="row">
-        <h4>Price</h4>
+        <h4>Price track</h4>
         {items} 
       </div>
     )

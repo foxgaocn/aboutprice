@@ -27,18 +27,7 @@ var ProductModal = React.createClass({
             <h4 className='link'>{product.name}</h4>
           </div>
           <div>
-            <span className='priceok'>Price: </span>
-            <span className='price'>${product.price/100.0}</span>
-          </div>
-          <div>
-            <div>
-              <span className='priceok'>From: </span>
-              <span className='advice'> {product.shop} </span>
-            </div>
-            <div>
-              <span className='priceok'>Price: </span>
-              <span className='advice'> {Util.priceIndicator(product.rating)} </span>
-            </div>
+            <ProductInfo product={product}/>
           </div>
           <div>
             <Chart data={product.history}/>

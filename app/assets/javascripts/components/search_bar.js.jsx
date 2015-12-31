@@ -29,7 +29,7 @@ var SearchBar = React.createClass({
         <input type="search" ref="term" onChange={this.termChange} defaultValue={this.props.term} className="form-control" placeholder="search product here" onKeyDown={this.keyDown} autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false"/>
         <span className="input-group-btn">
           <button className="btn btn-default" type="button" onClick={this.performSearch}>
-            <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <i className="fa fa-search"></i>
           </button>
         </span>
       </div>

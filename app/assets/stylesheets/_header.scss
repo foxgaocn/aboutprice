@@ -90,7 +90,7 @@
     background: #4285f4;
     background: -webkit-linear-gradient(top,#4387fd,#4683ea);
     background: linear-gradient(top,#4387fd,#4683ea);
-    .glyphicon-search{
+    .fa{
       color: #fff;
     }
   }
@@ -107,8 +107,8 @@
   font-size: 14px;
   font-family: "Lucida Console", Monaco, monospace;
   font-weight: bold;
-  color: #fff !important;
-  background-color: #2ec4b6 !important; /* Old browsers */
+  color: #d8d6c0 !important;
+  background-color: #137495 !important; /* Old browsers */
   margin-left: 0px;
   margin-right: 0px;
 }
@@ -139,14 +139,14 @@
         span{
           font-size: 11px;
           font-weight: bold;
-          color: #FFF;
+          color: #EF6C0F;
           text-align: center;
           line-height: 25px;
           transform: rotate(45deg);
           -webkit-transform: rotate(45deg);
           width: 100px;
           display: block;
-          background: #8F0808;
+          background: #d8d6c0;
           position: absolute;
           top: 19px; right: -21px;
         }

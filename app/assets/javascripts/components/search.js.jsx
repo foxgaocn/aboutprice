@@ -2,7 +2,7 @@ var ReactTransitionGroup = React.addons.CSSTransitionGroup
 
 var Search = React.createClass({
   getInitialState: function() {
-    return {products: []};
+    return {products: null};
   },
 
   setFilter: function(newObj){
