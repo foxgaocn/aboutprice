@@ -14,6 +14,14 @@ Util = {
     return new Date(this.startDate.getTime() + hours*3600000)
   },
 
+  formatDate: function (input) {
+    var pattern = /(.*?)\/(.*?)\/(.*?)$/;
+    return input.replace(pattern,function(match,p1,p2,p3){
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return (p2<10?"0"+p2:p2) + " " + months[(p1-1)];
+    });
+  },
+
   moveCursorToEnd: function(el) {
     if (typeof el.selectionStart == "number") {
         el.selectionStart = el.selectionEnd = el.value.length;

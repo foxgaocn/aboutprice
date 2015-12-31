@@ -37,7 +37,7 @@ var Chart = React.createClass({
           low: firstDay,
           high: lastDay,
           labelInterpolationFnc: function(value) {
-            return Util.hoursToDate(value).toLocaleDateString('en-AU')
+            return Util.formatDate(Util.hoursToDate(value).toLocaleDateString('en'))
           }
         },
         series:{
