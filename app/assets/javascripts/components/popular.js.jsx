@@ -28,7 +28,11 @@ var Popular = React.createClass({
 
     return (
       <div id="search-content" className="container">
-        {content}
+        <div className="row">
+          <div className="col-md-10 col-md-offset-2">
+            {content}
+          </div>
+        </div>
       </div>
     );
   }
