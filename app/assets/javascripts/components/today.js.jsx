@@ -24,14 +24,6 @@ var Today = React.createClass({
   },
 
 
-  down_sign: function(product, type){
-    if(type == 'by_price')
-    {
-      return <div className='down'><span>{'$' + product.price_drop/100 + ' off'}</span></div>
-    }
-    return <div className='down'><span>{(product.price_drop_percent*100).toFixed(2) + '% off'}</span></div>
-  },
-
   genStar: function(count){
     var stars = []
     for(i=0; i<count; i++){
@@ -44,12 +36,10 @@ var Today = React.createClass({
     if(product == null)
       return null
 
-    down_sign = this.down_sign(product, type)
     return(
       <div className="top-product" data={product.id} data-product={JSON.stringify(product)} onClick={this.showProduct}>
         <div className="image">
           <img src={product.img}/>
-          {down_sign}
         </div>
         <div className="info">
           <div className="main-title">

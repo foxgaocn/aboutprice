@@ -129,28 +129,6 @@
         height: 100%;
         width: auto;
       };
-      .down{
-        position: absolute;
-        right: -5px; top: -5px;
-        z-index: 1;
-        overflow: hidden;
-        width: 75px; height: 75px;
-        text-align: right;
-        span{
-          font-size: 11px;
-          font-weight: bold;
-          color: #EF6C0F;
-          text-align: center;
-          line-height: 25px;
-          transform: rotate(45deg);
-          -webkit-transform: rotate(45deg);
-          width: 100px;
-          display: block;
-          background: #d8d6c0;
-          position: absolute;
-          top: 19px; right: -21px;
-        }
-      }
     }
     .top-product{
       margin-top: -1px;
