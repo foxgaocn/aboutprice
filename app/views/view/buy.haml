@@ -1,8 +1,0 @@
-=render 'header'
-%section.buy
-  .row{"ng-repeat" => "item in order_items", "ng-class" => "$even ? 'even' : '' "}
-    .col-xs-9 {{item.product_name}} X {{item.total}}
-    .col-xs-3{"ng-click"=> "open_details($index)"} 
-      .btn.btn-success 采购
-  .center
-    %h2 {{text}}
