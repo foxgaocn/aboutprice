@@ -44,6 +44,7 @@ var SearchFilter = React.createClass({
           <SearchCategories history={this.props.history} categories={this.props.categories} filter={filter.category_id} onFilterChange={this.props.onFilterChange}/>
           <SearchShops history={this.props.history} shops={this.props.shops} filter={filter.shop_ids} onFilterChange={this.props.onFilterChange}/>
           <SearchRatings history={this.props.history} filter={filter.rating} onFilterChange={this.props.onFilterChange}/>
+          <SearchPriceRange history={this.props.history} range={this.props.range} min={filter.min} max={filter.max} onFilterChange={this.props.onFilterChange}/>
         </div>
         {hide}
       </div>
@@ -56,6 +57,7 @@ var SearchFilter = React.createClass({
         <SearchCategories history={this.props.history} categories={this.props.categories} filter={filter.category_id} onFilterChange={this.props.onFilterChange}/>
         <SearchShops history={this.props.history} shops={this.props.shops} filter={filter.shop_ids} onFilterChange={this.props.onFilterChange}/>
         <SearchRatings history={this.props.history} filter={filter.rating} onFilterChange={this.props.onFilterChange} product_count={this.props.product_count}/>
+        <SearchPriceRange history={this.props.history} range={this.props.range} min={filter.min} max={filter.max} onFilterChange={this.props.onFilterChange}/>
       </div>
       )
   },

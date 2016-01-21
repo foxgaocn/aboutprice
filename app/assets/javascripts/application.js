@@ -21,5 +21,6 @@
 //= require react_router.min
 //= require history.min
 //= require chartist.min
+//= require react_slider
 //= require components
 

@@ -33,13 +33,14 @@ module Api
       sid = Riddle::Query.escape params[:sid].to_s
       rating = Riddle::Query.escape params[:rating].to_s
       page = Riddle::Query.escape params[:p].to_s
+      min = Riddle::Query.escape params[:min].to_s
+      max = Riddle::Query.escape params[:max].to_s
 
       if query.empty?
         render json: {} 
         return
       end
-
-      result = Product.query(query, cid, sid, rating, page)
+      result = Product.query(query, cid, sid, rating, page, min.to_i * 100, max.to_i * 100)
       render json: result
     end
 

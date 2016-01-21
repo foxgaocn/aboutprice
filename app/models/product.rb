@@ -37,9 +37,9 @@ class Product < ActiveRecord::Base
   end
 
 
-  def self.query(term, cid, sid, rating, page)
+  def self.query(term, cid, sid, rating, page, min, max)
     current_page = page || 1
-    result = {categories: [], shops: [], products: []}
+    result = {categories: [], shops: [], products: [], range: nil}
     
     #always get all the categories
     products = Product.search_for_ids term, 
@@ -59,16 +59,23 @@ class Product < ActiveRecord::Base
       result[:shops] << {id: shop_id, name: SHOP_IDS[shop_id], count: count}
     end
 
+    #get price range
+    product_max = Product.search term, :order => 'price DESC', :page => 1, :per_page => 1,  :star => true
+    product_min = Product.search term, :order => :price, :page => 1, :per_page => 1,  :star => true
+    price_max = (product_max.first.try(:price) || 0)/100
+    price_min = (product_min.first.try(:price) || 0)/100
+    result[:range] = (price_min..price_max)
+
     #get products based on categories and sellers
-    prod_condition = {page: current_page, :star => true, with: {}}
+    prod_condition = {page: current_page, :star => true, :order => 'rating DESC', with: {}}
     prod_condition[:with].merge!({:category_id => cid.to_i}) unless cid.empty?
     prod_condition[:with].merge!({:shop_id => sid.split(',').map{|id| id.to_i}}) unless sid.empty?
     prod_condition[:with].merge!({:rating => rating.split(',').map{|id| id.to_i}}) unless rating.empty?
+    prod_condition[:with].merge!({:price => (min..max)}) unless min==0 && max==0
     products = Product.search term, prod_condition
     products.each do |product|
       result[:products] << ProductSerializer.new(product).serializable_hash
     end
-
     result
   end
 
