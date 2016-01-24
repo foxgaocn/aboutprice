@@ -49,6 +49,7 @@ var Header = React.createClass({
                <span className="title3">{'.com.au'}</span>
             </div>
           </Link>
+          <SocialButtons titleClass={this.state.titleClass}/>
           <SearchBar history={this.props.history} term={this.props.term} noFocus={this.props.noFocus}/>
         </div>
       </div>

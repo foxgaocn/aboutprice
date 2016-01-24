@@ -16,6 +16,69 @@
     }
   }
 
+  #social-buttons{
+    .share-base { padding:4px; font-size:22px; cursor:pointer; width:32px; text-align:center; border-radius:3px; }
+    .share-twitter { background:#55ACEE; color:white; }
+    .share-google-plus { background:#DD4B39; color:white;}
+    .share-facebook { background:#3B5998; color:white; }
+    .share-mail { background:#c18610; color:white; }
+    .share-contact { background:#C16010; color:white; }
+    a{
+      text-decoration: none;
+      margin-left: 9px;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+    
+    .button-on-big{
+      position: relative;
+      top: 78px;
+      text-align: center;
+    }
+
+    .button-on-small{
+      position: relative;
+      .dropdown-menu{
+        left: -110px;
+        li{
+          text-align: middle;
+        }
+      }
+
+      .top-right{
+        position: absolute;
+        top: -38px;
+        right: 0px; 
+      }
+      .share-base{
+        margin-left: 62px;
+        height: 32px;
+        margin-bottom: 12px;
+      }
+      .collapsed{
+        border-color: #333;
+        width: 40px;
+        height: 34px;
+        background-color: #000;
+        &:hover{
+          background-color: #333;
+        }
+        .icon-bar{
+          display: block;
+          width: 22px;
+          height: 2px;
+          border-radius: 1px;
+          background-color: #fff;
+          &:not(:first-child){
+            margin-top: 4px;
+          }
+        }
+      }
+    }
+  }
+
+  
   .title{
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
