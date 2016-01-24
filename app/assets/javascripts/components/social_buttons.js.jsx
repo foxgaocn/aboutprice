@@ -19,8 +19,8 @@ var SocialButtons = React.createClass({
           <a className="fa fa-facebook share-base share-facebook" onClick={this.shareFb} title="share to facebook"></a>
           <a className="fa fa-twitter share-base share-twitter" onClick={this.shareTwitter} title="share to twitter"></a>
           <a className="fa fa-google-plus share-base share-google-plus" onClick={this.shareGoogle} title="share to google plus"></a>
-          <a className="fa fa-envelope-o share-base share-mail" href='mailto:?body=http://www.priceadvisor.com.au' title="share to friends"></a>
-          <a className="fa fa-comment share-base share-contact" href='mailto:?admin@priceadvisor.com.au' title="contact us"></a>
+          <a className="fa fa-envelope-o share-base share-mail" href='mailto:body=http://www.priceadvisor.com.au' title="share to friends"></a>
+          <a className="fa fa-comment share-base share-contact" href='mailto:admin@priceadvisor.com.au' title="contact us"></a>
         </div>
       </div>
     );
