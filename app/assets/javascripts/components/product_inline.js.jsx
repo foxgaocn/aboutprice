@@ -11,7 +11,11 @@ var ProductInline = React.createClass({
         </div>
         <div className="col-md-9">
           <div>
-            <h3><a href={product.url} target="_blank">{product.name}</a></h3>
+            <h3>
+              <a href={product.url} target="_blank">{product.name}
+                &nbsp; &nbsp;<i className="fa fa-external-link"></i>
+              </a>
+            </h3>
           </div>
           <div className="row">
             <div className="col-md-4 vcenter">
