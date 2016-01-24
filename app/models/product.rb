@@ -67,7 +67,7 @@ class Product < ActiveRecord::Base
     result[:range] = (price_min..price_max)
 
     #get products based on categories and sellers
-    prod_condition = {page: current_page, :star => true, :order => 'rating DESC', with: {}}
+    prod_condition = {page: current_page, :star => true, :order => 'rating DESC, price', with: {}}
     prod_condition[:with].merge!({:category_id => cid.to_i}) unless cid.empty?
     prod_condition[:with].merge!({:shop_id => sid.split(',').map{|id| id.to_i}}) unless sid.empty?
     prod_condition[:with].merge!({:rating => rating.split(',').map{|id| id.to_i}}) unless rating.empty?
